@@ -1,0 +1,17 @@
+class: Rooms
+table: rooms
+fields:
+ socId: int
+ roomNo: int
+ owner: String
+ onRent: bool
+ onSale: bool
+ carpetArea: int
+ roomStructure: String
+ balcony: bool
+ isOccupied: bool
+ totalMembers: int
+ roomExist: bool
+ ownerId: int
+ membersId: List<int>
+ rentalId: List<int>

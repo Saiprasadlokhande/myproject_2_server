@@ -1,0 +1,12 @@
+class: SocBody
+table: soc_body
+fields:
+  socId: int
+  chairman: int
+  secretary: int
+  treasurer: int
+  viceChairman: int
+  viceSecretary: int
+  viceTreasurer: int
+  members: List<int>
+  year: int

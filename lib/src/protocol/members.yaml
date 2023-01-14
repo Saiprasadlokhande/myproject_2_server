@@ -1,0 +1,15 @@
+class: Members
+table: members
+fields: 
+  name: String
+  age: int
+  mobile: String
+  email: String
+  aadharNo: String
+  panNo: String
+  dob: DateTime
+  blockCount: int
+  mobileModel: String
+  status: bool
+  isActive: bool
+

@@ -1,0 +1,4 @@
+class: Country
+table: country
+fields:
+  country: String

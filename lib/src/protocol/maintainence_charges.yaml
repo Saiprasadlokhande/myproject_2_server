@@ -1,0 +1,21 @@
+class: MaintainenceCharges
+table: maintainence_charges
+fields:
+  socId: int
+  fromDate: DateTime
+  toDate: DateTime
+  oneBhk: int
+  twoBhk: int
+  threeBhk: int
+  fourBhk: int
+  persqft: int
+  twoWheel: int
+  threeWheel: int
+  fourWheel: int
+  other: int
+  rental: int
+  nonOccupancy: int
+  year: int
+  penalty: int
+  dueDate: int
+  isActive: bool

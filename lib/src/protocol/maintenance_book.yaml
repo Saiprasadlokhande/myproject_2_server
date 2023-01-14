@@ -1,0 +1,14 @@
+class: MaintenanceBook
+table: maintenance_book
+fields:
+  socId: int
+  receiptId: int
+  roomNo: int
+  block: String
+  year: int
+  ownerId: int
+  paymentMode: String
+  paymentDate: DateTime
+  collectedBy: int
+  month: String
+  penalty: int

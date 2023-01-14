@@ -1,0 +1,5 @@
+class: District
+table: district
+fields:
+  stateId: int
+  district: String

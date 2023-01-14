@@ -1,0 +1,14 @@
+class: Society
+table: society
+fields:
+  socName: String
+  socRegNo: String
+  socAddressId: int
+  totalRoom: int
+  totalBlock: int
+  totalShop: int
+  totalFloor: List<int>
+  maxRoomsEachFloor: List<int>
+  latitude: double
+  longitude: double
+  landmark: String

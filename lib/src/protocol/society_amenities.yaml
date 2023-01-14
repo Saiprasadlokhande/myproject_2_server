@@ -1,0 +1,18 @@
+class: SocietyAmenities
+table: soc_amenities
+fields:
+  socId: int
+  bikeParking: bool
+  carParking: bool
+  powerBackup: bool
+  securitySystem: bool
+  lift: bool
+  waterSupplyAllDay: bool
+  gym: bool
+  solarEnergy: bool
+  rainwaterHarvesting: bool
+  nearbyHospital: bool
+  nearbySchool: bool
+  nearbyShopping: bool
+  onSitMaintenance: bool
+

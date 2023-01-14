@@ -1,0 +1,11 @@
+class: UserRoom
+table: user_room
+fields:
+  socId: int
+  userId: int
+  roomId: int
+  fromDate: DateTime
+  toDate: DateTime
+  ownership: bool
+  isResident: bool
+  isRental: bool

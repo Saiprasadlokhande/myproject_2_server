@@ -1,0 +1,42 @@
+address:
+  - addAddress:
+  - getAddress:
+  - updateAddress:
+  - deleteAddress:
+  - findAddress:
+area:
+  - addArea:
+  - getArea:
+  - updateArea:
+  - deleteArea:
+  - findArea:
+city:
+  - addCity:
+  - getAllCity:
+  - updateCity:
+  - deleteCity:
+country:
+  - addCountry:
+  - getCountry:
+  - updateCountry:
+  - deleteCountry:
+district:
+  - addDistrict:
+  - getDistrict:
+  - updateDistrict:
+  - deleteDistrict:
+society:
+  - addSociety:
+  - getSociety:
+  - updateSociety:
+  - deleteSociety:
+state:
+  - addState:
+  - getState:
+  - updateState:
+  - deleteState:
+members:
+  - getMembers:
+  - addMembers:
+  - updateMembers:
+  - deleteMembers:

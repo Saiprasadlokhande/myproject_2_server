@@ -1,0 +1,13 @@
+class: Address
+table: address
+fields:
+  areaId: int
+  wardId: int
+  cityId: int
+  mcId: int
+  districtId: int
+  stateId: int
+  countryId: int
+  fullAddress: String
+  landmark: String
+  pincode: int

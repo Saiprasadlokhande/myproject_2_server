@@ -1,0 +1,9 @@
+class: Vehicles
+table: vehicles
+fields:
+  vehicleNo: String
+  ownerId: int
+  roomId: int
+  vehicleType: int
+  entryDate: DateTime
+  updatedDate: DateTime
