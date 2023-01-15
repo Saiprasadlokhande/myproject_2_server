@@ -1,27 +1,41 @@
+import 'package:myproject_2_server/helper/addressHelper.dart';
+import 'package:myproject_2_server/response/constants.dart';
+import 'package:myproject_2_server/response/response.dart';
 import 'package:myproject_2_server/src/generated/district.dart';
+import 'package:myproject_2_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 
 class DistrictEndpoint extends Endpoint {
-  Future<bool> addDistrict(Session session, District district) async {
-    await District.insert(session, district);
-    return true;
+  AddressHelper helper = AddressHelper();
+  Future<ResponseBody> addDistrict(Session session, District district) async {
+    bool val = await helper.addDistrict(session, district);
+    if (val) {
+      return successResponse(
+          "District ${district.district} $dataAddedSuccessfully");
+    } else {
+      return errorResponse("Country ${district.district} $dataAlreadyExist");
+    }
   }
 
-  Future<List<District>> getDistrict(Session session, int stateId,
+  Future<ResponseBody> getDistrict(Session session, int countryId,
       {String? keyword}) async {
-    return await District.find(session,
-        where: (t) => keyword != null
-            ? t.district.like(keyword)
-            : Constant(true) & t.stateId.equals(stateId));
+    List<States> list = [];
+    list = helper.getDistrict(session, countryId, keyword: keyword);
+    return successResponse(list);
   }
 
-  Future<bool> updateDistrict(Session session, District district) async {
-    bool result = await District.update(session, district);
-    return result;
+  Future<ResponseBody> updateDistrict(
+      Session session, District district) async {
+    bool result = await helper.updateDistrict(session, district);
+    return result
+        ? successResponse(dataUpdatedSuccessfully)
+        : errorResponse(dataUpdateFailed);
   }
 
-  Future<bool> deleteDistrict(Session session, int id) async {
-    int result = await District.delete(session, where: (t) => t.id.equals(id));
-    return result == 1;
+  Future<ResponseBody> deleteDistrict(Session session, int id) async {
+    int result = await helper.deleteDistrict(session, id);
+    return result == 1
+        ? successResponse(dataDeletedSuccessfully)
+        : errorResponse(dataDeleteFailed);
   }
 }

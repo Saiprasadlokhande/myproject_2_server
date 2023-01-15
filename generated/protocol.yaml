@@ -3,16 +3,14 @@ address:
   - getAddress:
   - updateAddress:
   - deleteAddress:
-  - findAddress:
 area:
   - addArea:
   - getArea:
   - updateArea:
   - deleteArea:
-  - findArea:
 city:
   - addCity:
-  - getAllCity:
+  - getCity:
   - updateCity:
   - deleteCity:
 country:
@@ -36,7 +34,7 @@ state:
   - updateState:
   - deleteState:
 members:
-  - getMembers:
   - addMembers:
+  - getMembers:
   - updateMembers:
   - deleteMembers:

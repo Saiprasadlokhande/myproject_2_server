@@ -1,25 +1,37 @@
+import 'package:myproject_2_server/helper/memberHelper.dart';
+import 'package:myproject_2_server/response/constants.dart';
+import 'package:myproject_2_server/response/response.dart';
 import 'package:myproject_2_server/src/generated/members.dart';
 import 'package:serverpod/serverpod.dart';
 
 class MembersEndpoint extends Endpoint {
-  Future<List<Members>> getMembers(Session session, {String? keyword}) async {
-    return await Members.find(session,
-        where: (t) =>
-            keyword != null ? t.name.like('%$keyword%') : Constant(true));
+  MemberHelper helper = MemberHelper();
+  Future<ResponseBody> addMembers(Session session, Members member) async {
+    bool val = await helper.addMembers(session, member);
+    if (val) {
+      return successResponse("Members ${member.email} $dataAddedSuccessfully");
+    } else {
+      return errorResponse("Country ${member.email} $dataAlreadyExist");
+    }
   }
 
-  Future<bool> addMembers(Session session, Members users) async {
-    await Members.insert(session, users);
-    return true;
+  Future<ResponseBody> getMembers(Session session, {String? keyword}) async {
+    List<Members> list = [];
+    list = helper.getMembers(session, keyword: keyword);
+    return successResponse(list);
   }
 
-  Future<bool> updateMembers(Session session, Members user) async {
-    bool result = await Members.update(session, user);
-    return result;
+  Future<ResponseBody> updateMembers(Session session, Members member) async {
+    bool result = await helper.updateMembers(session, member);
+    return result
+        ? successResponse(dataUpdatedSuccessfully)
+        : errorResponse(dataUpdateFailed);
   }
 
-  Future<bool> deleteMembers(Session session, int id) async {
-    var result = await Members.delete(session, where: (t) => t.id.equals(id));
-    return result == 1;
+  Future<ResponseBody> deleteMembers(Session session, int id) async {
+    int result = await helper.deleteMembers(session, id);
+    return result == 1
+        ? successResponse(dataDeletedSuccessfully)
+        : errorResponse(dataDeleteFailed);
   }
 }

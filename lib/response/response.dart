@@ -5,7 +5,7 @@ class ResponseBody {
   ResponseBody({this.body, this.errorMessage = "", this.message = ''});
 }
 
-ResponseBody successResponse(dynamic response, {String? message}) {
+ResponseBody successResponse(dynamic response, {String message = "Success"}) {
   return ResponseBody(body: response, errorMessage: '', message: message ?? '');
 }
 

@@ -1,35 +1,37 @@
+import 'package:myproject_2_server/helper/addressHelper.dart';
+import 'package:myproject_2_server/response/constants.dart';
+import 'package:myproject_2_server/response/response.dart';
 import 'package:myproject_2_server/src/generated/address.dart';
 import 'package:serverpod/serverpod.dart';
 
 class AddressEndpoint extends Endpoint {
-  Future<bool> addAddress(Session session, Address address) async {
-    int i = await findAddress(session, address.areaId);
-    if (i == 0) {
-      await Address.insert(session, address);
-      return true;
+  AddressHelper helper = AddressHelper();
+  Future<ResponseBody> addAddress(Session session, Address address) async {
+    bool val = await helper.addAddress(session, address);
+    if (val) {
+      return successResponse("Address $dataAddedSuccessfully");
     } else {
-      return false;
+      return errorResponse("Country $dataAlreadyExist");
     }
   }
 
-  Future<List<Address>> getAddress(Session session, {String? text}) async {
-    return await Address.find(session,
-        where: (t) => text != null ? t.fullAddress.like(text) : Constant(true));
+  Future<ResponseBody> getAddress(Session session, {String? keyword}) async {
+    List<Address> list = [];
+    list = helper.getAddress(session, keyword: keyword);
+    return successResponse(list);
   }
 
-  Future<bool> updateAddress(Session session, Address address) async {
-    bool result = await Address.update(session, address);
-    return result;
+  Future<ResponseBody> updateAddress(Session session, Address address) async {
+    bool result = await helper.updateAddress(session, address);
+    return result
+        ? successResponse(dataUpdatedSuccessfully)
+        : errorResponse(dataUpdateFailed);
   }
 
-  Future<bool> deleteAddress(Session session, int id) async {
-    int result = await Address.delete(session, where: (t) => t.id.equals(id));
-    return result == 1;
-  }
-
-  Future<int> findAddress(Session session, int areaId) async {
-    List<Address> addressList =
-        await Address.find(session, where: (t) => t.areaId.equals(areaId));
-    return addressList.length;
+  Future<ResponseBody> deleteAddress(Session session, int id) async {
+    int result = await helper.deleteAddress(session, id);
+    return result == 1
+        ? successResponse(dataDeletedSuccessfully)
+        : errorResponse(dataDeleteFailed);
   }
 }
