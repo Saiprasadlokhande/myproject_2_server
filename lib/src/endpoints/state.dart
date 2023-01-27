@@ -1,38 +1,34 @@
-import 'package:myproject_2_server/helper/addressHelper.dart';
-import 'package:myproject_2_server/response/constants.dart';
-import 'package:myproject_2_server/response/response.dart';
 import 'package:myproject_2_server/src/generated/protocol.dart';
 import 'package:serverpod/serverpod.dart';
 
 class StateEndpoint extends Endpoint {
-  AddressHelper helper = AddressHelper();
-  Future<ResponseBody> addState(Session session, States state) async {
-    bool val = await helper.addState(session, state);
-    if (val) {
-      return successResponse("State ${state.state} $dataAddedSuccessfully");
+  Future<bool> addState(Session session, States state) async {
+    List<States> statelist = await getState(session, state.countryId);
+    int i = statelist.length;
+
+    if (i == 0) {
+      await States.insert(session, state);
+      return true;
     } else {
-      return errorResponse("Country ${state.state} $dataAlreadyExist");
+      return false;
     }
   }
 
-  Future<ResponseBody> getState(Session session, int countryId,
+  Future<List<States>> getState(Session session, int countryId,
       {String? keyword}) async {
-    List<Country> list = [];
-    list = helper.getState(session, countryId, keyword: keyword);
-    return successResponse(list);
+    return await States.find(session,
+        where: (t) => keyword != null
+            ? t.state.like(keyword)
+            : Constant(true) & t.countryId.equals(countryId));
   }
 
-  Future<ResponseBody> updateState(Session session, States state) async {
-    bool result = await helper.updateState(session, state);
-    return result
-        ? successResponse(dataUpdatedSuccessfully)
-        : errorResponse(dataUpdateFailed);
+  Future<bool> updateState(Session session, States state) async {
+    bool result = await States.update(session, state);
+    return result;
   }
 
-  Future<ResponseBody> deleteState(Session session, int id) async {
-    int result = await helper.deleteState(session, id);
-    return result == 1
-        ? successResponse(dataDeletedSuccessfully)
-        : errorResponse(dataDeleteFailed);
+  Future<bool> deleteState(Session session, int id) async {
+    int result = await States.delete(session, where: (t) => t.id.equals(id));
+    return result == 1;
   }
 }

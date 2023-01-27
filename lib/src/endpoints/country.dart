@@ -1,38 +1,35 @@
-import 'package:myproject_2_server/helper/addressHelper.dart';
-import 'package:myproject_2_server/response/constants.dart';
-import 'package:myproject_2_server/response/response.dart';
 import 'package:myproject_2_server/src/generated/country.dart';
 import 'package:serverpod/serverpod.dart';
 
 class CountryEndpoint extends Endpoint {
-  AddressHelper helper = AddressHelper();
-  Future<ResponseBody> addCountry(Session session, Country country) async {
-    bool val = await helper.addCountry(session, country);
-    if (val) {
-      return successResponse(
-          "Country ${country.country} $dataAddedSuccessfully");
+  Future<bool> addCountry(Session session, Country country) async {
+    List<Country> countrylist =
+        await getCountry(session, keyword: country.country);
+    int i = countrylist.length;
+
+    if (i == 0) {
+      await Country.insert(session, country);
+      return true;
     } else {
-      return errorResponse("Country ${country.country} $dataAlreadyExist");
+      return false;
     }
   }
 
-  Future<ResponseBody> getCountry(Session session, {String? keyword}) async {
+  Future<List<Country>> getCountry(Session session, {String? keyword}) async {
     List<Country> list = [];
-    list = helper.getCountry(session);
-    return successResponse(list);
+    list = await Country.find(session,
+        where: (t) =>
+            keyword != null ? t.country.like('%$keyword%') : Constant(true));
+    return list;
   }
 
-  Future<ResponseBody> updateCountry(Session session, Country country) async {
-    bool result = await helper.updateCountry(session, country);
-    return result
-        ? successResponse(dataUpdatedSuccessfully)
-        : errorResponse(dataUpdateFailed);
+  Future<bool> updateCountry(Session session, Country country) async {
+    bool result = await Country.update(session, country);
+    return result;
   }
 
-  Future<ResponseBody> deleteCountry(Session session, int id) async {
-    int result = await helper.deleteCountry(session, id);
-    return result == 1
-        ? successResponse(dataDeletedSuccessfully)
-        : errorResponse(dataDeleteFailed);
+  Future<bool> deleteCountry(Session session, int id) async {
+    int result = await Country.delete(session, where: (t) => t.id.equals(id));
+    return result == 1;
   }
 }

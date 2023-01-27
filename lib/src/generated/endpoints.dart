@@ -102,8 +102,8 @@ class Endpoints extends _i1.EndpointDispatch {
         'getAddress': _i1.MethodConnector(
           name: 'getAddress',
           params: {
-            'keyword': _i1.ParameterDescription(
-              name: 'keyword',
+            'text': _i1.ParameterDescription(
+              name: 'text',
               type: _i1.getType<String?>(),
               nullable: true,
             )
@@ -114,7 +114,7 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['address'] as _i2.AddressEndpoint).getAddress(
             session,
-            keyword: params['keyword'],
+            text: params['text'],
           ),
         ),
         'updateAddress': _i1.MethodConnector(
@@ -153,6 +153,24 @@ class Endpoints extends _i1.EndpointDispatch {
             params['id'],
           ),
         ),
+        'findAddress': _i1.MethodConnector(
+          name: 'findAddress',
+          params: {
+            'areaId': _i1.ParameterDescription(
+              name: 'areaId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['address'] as _i2.AddressEndpoint).findAddress(
+            session,
+            params['areaId'],
+          ),
+        ),
       },
     );
     connectors['area'] = _i1.EndpointConnector(
@@ -180,8 +198,8 @@ class Endpoints extends _i1.EndpointDispatch {
         'getArea': _i1.MethodConnector(
           name: 'getArea',
           params: {
-            'districtId': _i1.ParameterDescription(
-              name: 'districtId',
+            'areaId': _i1.ParameterDescription(
+              name: 'areaId',
               type: _i1.getType<int>(),
               nullable: false,
             ),
@@ -197,7 +215,7 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['area'] as _i3.AreaEndpoint).getArea(
             session,
-            params['districtId'],
+            params['areaId'],
             keyword: params['keyword'],
           ),
         ),
@@ -237,6 +255,24 @@ class Endpoints extends _i1.EndpointDispatch {
             params['id'],
           ),
         ),
+        'findArea': _i1.MethodConnector(
+          name: 'findArea',
+          params: {
+            'areaId': _i1.ParameterDescription(
+              name: 'areaId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['area'] as _i3.AreaEndpoint).findArea(
+            session,
+            params['areaId'],
+          ),
+        ),
       },
     );
     connectors['city'] = _i1.EndpointConnector(
@@ -261,8 +297,8 @@ class Endpoints extends _i1.EndpointDispatch {
             params['city'],
           ),
         ),
-        'getCity': _i1.MethodConnector(
-          name: 'getCity',
+        'getAllCity': _i1.MethodConnector(
+          name: 'getAllCity',
           params: {
             'districtId': _i1.ParameterDescription(
               name: 'districtId',
@@ -279,7 +315,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['city'] as _i4.CityEndpoint).getCity(
+              (endpoints['city'] as _i4.CityEndpoint).getAllCity(
             session,
             params['districtId'],
             keyword: params['keyword'],
@@ -426,8 +462,8 @@ class Endpoints extends _i1.EndpointDispatch {
         'getDistrict': _i1.MethodConnector(
           name: 'getDistrict',
           params: {
-            'countryId': _i1.ParameterDescription(
-              name: 'countryId',
+            'districtId': _i1.ParameterDescription(
+              name: 'districtId',
               type: _i1.getType<int>(),
               nullable: false,
             ),
@@ -443,7 +479,7 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['district'] as _i6.DistrictEndpoint).getDistrict(
             session,
-            params['countryId'],
+            params['districtId'],
             keyword: params['keyword'],
           ),
         ),
@@ -651,24 +687,6 @@ class Endpoints extends _i1.EndpointDispatch {
       name: 'members',
       endpoint: endpoints['members']!,
       methodConnectors: {
-        'addMembers': _i1.MethodConnector(
-          name: 'addMembers',
-          params: {
-            'member': _i1.ParameterDescription(
-              name: 'member',
-              type: _i1.getType<_i17.Members>(),
-              nullable: false,
-            )
-          },
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['members'] as _i9.MembersEndpoint).addMembers(
-            session,
-            params['member'],
-          ),
-        ),
         'getMembers': _i1.MethodConnector(
           name: 'getMembers',
           params: {
@@ -687,11 +705,29 @@ class Endpoints extends _i1.EndpointDispatch {
             keyword: params['keyword'],
           ),
         ),
+        'addMembers': _i1.MethodConnector(
+          name: 'addMembers',
+          params: {
+            'users': _i1.ParameterDescription(
+              name: 'users',
+              type: _i1.getType<_i17.Members>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['members'] as _i9.MembersEndpoint).addMembers(
+            session,
+            params['users'],
+          ),
+        ),
         'updateMembers': _i1.MethodConnector(
           name: 'updateMembers',
           params: {
-            'member': _i1.ParameterDescription(
-              name: 'member',
+            'user': _i1.ParameterDescription(
+              name: 'user',
               type: _i1.getType<_i17.Members>(),
               nullable: false,
             )
@@ -702,7 +738,7 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['members'] as _i9.MembersEndpoint).updateMembers(
             session,
-            params['member'],
+            params['user'],
           ),
         ),
         'deleteMembers': _i1.MethodConnector(
