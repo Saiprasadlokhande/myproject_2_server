@@ -5,7 +5,7 @@ class MembersEndpoint extends Endpoint {
   Future<List<Members>> getMembers(Session session, {String? keyword}) async {
     return await Members.find(session,
         where: (t) =>
-            keyword != null ? t.name.like('%$keyword%') : Constant(true));
+            keyword != null ? t.name.ilike('%$keyword%') : Constant(true));
   }
 
   Future<bool> addMembers(Session session, Members users) async {

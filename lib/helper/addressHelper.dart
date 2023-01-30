@@ -29,7 +29,7 @@
 //       print(keyword);
 //       list = await Country.find(session,
 //           where: (t) =>
-//               keyword != null ? t.country.like('%$keyword%') : Constant(true));
+//               keyword != null ? t.country.ilike('%$keyword%') : Constant(true));
 //       return list;
 //     } catch (e) {
 //       return errorResponse(e.toString());
@@ -75,7 +75,7 @@
 //       print(keyword);
 //       list = await States.find(session,
 //           where: (t) => keyword != null
-//               ? t.state.like(keyword)
+//               ? t.state.ilike(keyword)
 //               : Constant(true) & t.countryId.equals(countryId));
 //       return list;
 //     } catch (e) {
@@ -115,7 +115,7 @@
 //       print(keyword);
 //       list = await District.find(session,
 //           where: (t) => keyword != null
-//               ? t.district.like(keyword)
+//               ? t.district.ilike(keyword)
 //               : Constant(true) & t.stateId.equals(stateId));
 //       return list;
 //     } catch (e) {
@@ -154,7 +154,7 @@
 //       print(keyword);
 //       list = await City.find(session,
 //           where: (t) => keyword != null
-//               ? t.city.like(keyword)
+//               ? t.city.ilike(keyword)
 //               : Constant(true) & t.districtId.equals(districtId));
 //       return list;
 //     } catch (e) {
@@ -193,7 +193,7 @@
 //       print(keyword);
 //       list = await Area.find(session,
 //           where: (t) => keyword != null
-//               ? t.area.like(keyword)
+//               ? t.area.ilike(keyword)
 //               : Constant(true) & t.cityId.equals(districtId));
 //       return list;
 //     } catch (e) {
@@ -232,7 +232,7 @@
 //       print(keyword);
 //       list = await Address.find(session,
 //           where: (t) =>
-//               keyword != null ? t.fullAddress.like(keyword) : Constant(true));
+//               keyword != null ? t.fullAddress.ilike(keyword) : Constant(true));
 //       return list;
 //     } catch (e) {
 //       return errorResponse(e.toString());

@@ -46,8 +46,8 @@ class Address extends _i1.TableRow {
           .deserialize<String>(jsonSerialization['fullAddress']),
       landmark: serializationManager
           .deserialize<String>(jsonSerialization['landmark']),
-      pincode:
-          serializationManager.deserialize<int>(jsonSerialization['pincode']),
+      pincode: serializationManager
+          .deserialize<String>(jsonSerialization['pincode']),
     );
   }
 
@@ -71,7 +71,7 @@ class Address extends _i1.TableRow {
 
   String landmark;
 
-  int pincode;
+  String pincode;
 
   @override
   String get tableName => 'address';
@@ -304,7 +304,7 @@ class AddressTable extends _i1.Table {
 
   final landmark = _i1.ColumnString('landmark');
 
-  final pincode = _i1.ColumnInt('pincode');
+  final pincode = _i1.ColumnString('pincode');
 
   @override
   List<_i1.Column> get columns => [

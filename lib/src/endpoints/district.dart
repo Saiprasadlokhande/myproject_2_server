@@ -20,7 +20,7 @@ class DistrictEndpoint extends Endpoint {
       {String? keyword}) async {
     return await District.find(session,
         where: (t) => keyword != null
-            ? t.district.like(keyword)
+            ? t.district.ilike('%$keyword%')
             : Constant(true) & t.stateId.equals(districtId));
   }
 

@@ -10,7 +10,7 @@ class SocietyEndpoint extends Endpoint {
   Future<List<Society>> getSociety(Session session, {String? keyword}) async {
     return await Society.find(session,
         where: (t) =>
-            (keyword != null ? t.socName.like(keyword) : Constant(true)));
+            (keyword != null ? t.socName.ilike('%$keyword%') : Constant(true)));
   }
 
   Future<bool> updateSociety(Session session, Society society) async {

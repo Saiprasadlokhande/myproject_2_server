@@ -18,7 +18,7 @@ class AreaEndpoint extends Endpoint {
       {String? keyword}) async {
     return await Area.find(session,
         where: (t) => keyword != null
-            ? t.area.like(keyword)
+            ? t.area.ilike('%$keyword%')
             : Constant(true) & t.cityId.equals(areaId));
   }
 

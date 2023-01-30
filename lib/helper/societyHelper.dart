@@ -24,7 +24,7 @@
 //       print(keyword);
 //       list = await Society.find(session,
 //           where: (t) =>
-//               keyword != null ? t.socName.like(keyword) : Constant(true));
+//               keyword != null ? t.socName.ilike(keyword) : Constant(true));
 //       return list;
 //     } catch (e) {
 //       return errorResponse(e.toString());

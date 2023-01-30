@@ -14,7 +14,8 @@ class AddressEndpoint extends Endpoint {
 
   Future<List<Address>> getAddress(Session session, {String? text}) async {
     return await Address.find(session,
-        where: (t) => text != null ? t.fullAddress.like(text) : Constant(true));
+        where: (t) =>
+            text != null ? t.fullAddress.ilike('%$text%') : Constant(true));
   }
 
   Future<bool> updateAddress(Session session, Address address) async {

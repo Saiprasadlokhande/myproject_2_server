@@ -18,8 +18,8 @@ class StateEndpoint extends Endpoint {
       {String? keyword}) async {
     return await States.find(session,
         where: (t) => keyword != null
-            ? t.state.like(keyword)
-            : Constant(true) & t.countryId.equals(countryId));
+            ? t.countryId.equals(countryId) & t.state.ilike('%$keyword%')
+            : Constant(true));
   }
 
   Future<bool> updateState(Session session, States state) async {

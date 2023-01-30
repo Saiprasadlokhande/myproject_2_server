@@ -24,7 +24,7 @@
 //       print(keyword);
 //       list = await Members.find(session,
 //           where: (t) =>
-//               keyword != null ? t.name.like(keyword) : Constant(true));
+//               keyword != null ? t.name.ilike(keyword) : Constant(true));
 //       return list;
 //     } catch (e) {
 //       return errorResponse(e.toString());

@@ -13,7 +13,7 @@ CREATE TABLE "address" (
   "countryId" integer NOT NULL,
   "fullAddress" text NOT NULL,
   "landmark" text NOT NULL,
-  "pincode" integer NOT NULL
+  "pincode" text NOT NULL
 );
 
 ALTER TABLE ONLY "address"

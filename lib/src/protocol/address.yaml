@@ -10,4 +10,4 @@ fields:
   countryId: int
   fullAddress: String
   landmark: String
-  pincode: int
+  pincode: String

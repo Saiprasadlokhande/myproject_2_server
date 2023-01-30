@@ -19,7 +19,7 @@ class CountryEndpoint extends Endpoint {
     List<Country> list = [];
     list = await Country.find(session,
         where: (t) =>
-            keyword != null ? t.country.like('%$keyword%') : Constant(true));
+            keyword != null ? t.country.ilike('%$keyword%') : Constant(true));
     return list;
   }
 

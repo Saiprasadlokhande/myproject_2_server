@@ -18,7 +18,7 @@ class CityEndpoint extends Endpoint {
       {String? keyword}) async {
     return await City.find(session,
         where: (t) => keyword != null
-            ? t.city.like(keyword)
+            ? t.city.ilike('%$keyword%')
             : Constant(true) & t.districtId.equals(districtId));
   }
 
@@ -35,6 +35,6 @@ class CityEndpoint extends Endpoint {
 //   Future<List<List<dynamic>>> getAllCity(Session session, int areaId,
 //       {String? keyword}) async {
 //     // return await City.find(session,
-//     //     where: (t) => keyword != null ? t.city.like(keyword) : Constant(true));
+//     //     where: (t) => keyword != null ? t.city.ilike(keyword) : Constant(true));
 // var result = await session.db.query('query') ; }
 }
