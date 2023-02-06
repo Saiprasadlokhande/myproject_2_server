@@ -25,6 +25,11 @@ district:
   - getDistrict:
   - updateDistrict:
   - deleteDistrict:
+rooms:
+  - getRooms:
+  - addRooms:
+  - updateRooms:
+  - deleteRooms:
 society:
   - addSociety:
   - getSociety:

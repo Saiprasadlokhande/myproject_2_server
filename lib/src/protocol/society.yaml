@@ -12,3 +12,5 @@ fields:
   latitude: double
   longitude: double
   landmark: String
+  address: Address? ,api
+  rooms: List<Rooms>?, api

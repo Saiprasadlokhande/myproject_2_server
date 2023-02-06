@@ -1,7 +1,8 @@
 class: Rooms
 table: rooms
 fields:
- socId: int
+ socId: int, parent=society
+ room: String
  roomNo: int
  owner: String
  onRent: bool
@@ -15,3 +16,4 @@ fields:
  ownerId: int
  membersId: List<int>
  rentalId: List<int>
+

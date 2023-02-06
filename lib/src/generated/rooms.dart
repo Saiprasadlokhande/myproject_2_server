@@ -12,6 +12,7 @@ class Rooms extends _i1.TableRow {
   Rooms({
     int? id,
     required this.socId,
+    required this.room,
     required this.roomNo,
     required this.owner,
     required this.onRent,
@@ -34,6 +35,7 @@ class Rooms extends _i1.TableRow {
     return Rooms(
       id: serializationManager.deserialize<int?>(jsonSerialization['id']),
       socId: serializationManager.deserialize<int>(jsonSerialization['socId']),
+      room: serializationManager.deserialize<String>(jsonSerialization['room']),
       roomNo:
           serializationManager.deserialize<int>(jsonSerialization['roomNo']),
       owner:
@@ -66,6 +68,8 @@ class Rooms extends _i1.TableRow {
   static final t = RoomsTable();
 
   int socId;
+
+  String room;
 
   int roomNo;
 
@@ -100,6 +104,7 @@ class Rooms extends _i1.TableRow {
     return {
       'id': id,
       'socId': socId,
+      'room': room,
       'roomNo': roomNo,
       'owner': owner,
       'onRent': onRent,
@@ -121,6 +126,7 @@ class Rooms extends _i1.TableRow {
     return {
       'id': id,
       'socId': socId,
+      'room': room,
       'roomNo': roomNo,
       'owner': owner,
       'onRent': onRent,
@@ -142,6 +148,7 @@ class Rooms extends _i1.TableRow {
     return {
       'id': id,
       'socId': socId,
+      'room': room,
       'roomNo': roomNo,
       'owner': owner,
       'onRent': onRent,
@@ -169,6 +176,9 @@ class Rooms extends _i1.TableRow {
         return;
       case 'socId':
         socId = value;
+        return;
+      case 'room':
+        room = value;
         return;
       case 'roomNo':
         roomNo = value;
@@ -332,6 +342,8 @@ class RoomsTable extends _i1.Table {
 
   final socId = _i1.ColumnInt('socId');
 
+  final room = _i1.ColumnString('room');
+
   final roomNo = _i1.ColumnInt('roomNo');
 
   final owner = _i1.ColumnString('owner');
@@ -362,6 +374,7 @@ class RoomsTable extends _i1.Table {
   List<_i1.Column> get columns => [
         id,
         socId,
+        room,
         roomNo,
         owner,
         onRent,

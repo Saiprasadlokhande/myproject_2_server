@@ -152,36 +152,10 @@ ALTER TABLE ONLY "members"
 
 
 --
--- Class Rooms as table rooms
---
-
-CREATE TABLE "rooms" (
-  "id" serial,
-  "socId" integer NOT NULL,
-  "roomNo" integer NOT NULL,
-  "owner" text NOT NULL,
-  "onRent" boolean NOT NULL,
-  "onSale" boolean NOT NULL,
-  "carpetArea" integer NOT NULL,
-  "roomStructure" text NOT NULL,
-  "balcony" boolean NOT NULL,
-  "isOccupied" boolean NOT NULL,
-  "totalMembers" integer NOT NULL,
-  "roomExist" boolean NOT NULL,
-  "ownerId" integer NOT NULL,
-  "membersId" json NOT NULL,
-  "rentalId" json NOT NULL
-);
-
-ALTER TABLE ONLY "rooms"
-  ADD CONSTRAINT rooms_pkey PRIMARY KEY (id);
-
-
---
 -- Class SocietyAmenities as table soc_amenities
 --
 
-CREATE TABLE "soc_amenities" (
+CREATE TABLE "soc_amenities" (  
   "id" serial,
   "socId" integer NOT NULL,
   "bikeParking" boolean NOT NULL,
@@ -246,6 +220,38 @@ CREATE TABLE "society" (
 ALTER TABLE ONLY "society"
   ADD CONSTRAINT society_pkey PRIMARY KEY (id);
 
+
+--
+-- Class Rooms as table rooms
+--
+
+CREATE TABLE "rooms" (
+  "id" serial,
+  "socId" integer NOT NULL,
+  "room" text NOT NULL,
+  "roomNo" integer NOT NULL,
+  "owner" text NOT NULL,
+  "onRent" boolean NOT NULL,
+  "onSale" boolean NOT NULL,
+  "carpetArea" integer NOT NULL,
+  "roomStructure" text NOT NULL,
+  "balcony" boolean NOT NULL,
+  "isOccupied" boolean NOT NULL,
+  "totalMembers" integer NOT NULL,
+  "roomExist" boolean NOT NULL,
+  "ownerId" integer NOT NULL,
+  "membersId" json NOT NULL,
+  "rentalId" json NOT NULL
+);
+
+ALTER TABLE ONLY "rooms"
+  ADD CONSTRAINT rooms_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY "rooms"
+  ADD CONSTRAINT rooms_fk_0
+    FOREIGN KEY("socId")
+      REFERENCES society(id)
+        ON DELETE CASCADE;
 
 --
 -- Class States as table states

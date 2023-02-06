@@ -1,43 +1,43 @@
-// import 'package:myproject_2_server/response/response.dart';
-// import 'package:myproject_2_server/src/generated/society.dart';
-// import 'package:serverpod/serverpod.dart';
+import 'package:myproject_2_server/src/generated/protocol.dart';
+import 'package:serverpod/serverpod.dart';
 
-// class SocietyHelper {
-//   addSociety(Session session, Society society) async {
-//     try {
-//       List<Society> list = [];
-//       list = await getSociety(session, keyword: society.socName);
-//       if (list.isEmpty) {
-//         await Society.insert(session, society);
-//         return true;
-//       } else {
-//         return false;
-//       }
-//     } catch (e) {
-//       errorResponse(e.toString());
-//     }
-//   }
-
-//   getSociety(Session session, {String? keyword}) async {
-//     try {
-//       List<Society> list = [];
-//       print(keyword);
-//       list = await Society.find(session,
-//           where: (t) =>
-//               keyword != null ? t.socName.ilike(keyword) : Constant(true));
-//       return list;
-//     } catch (e) {
-//       return errorResponse(e.toString());
-//     }
-//   }
-
-//   updateSociety(Session session, Society society) async {
-//     bool result = await Society.update(session, society);
-//     return result;
-//   }
-
-//   deleteSociety(Session session, int id) async {
-//     int result = await Society.delete(session, where: (t) => t.id.equals(id));
-//     return result == 1;
-//   }
-// }
+class SocietyHelper {
+  createSocietyRoom(Session session, Society society) async {
+    try {
+      for (int i = 0; i < society.totalBlock; i++) {
+        for (int j = 0; j < society.totalFloor[i]; j++) {
+          for (int k = 0; k < society.maxRoomsEachFloor[i]; k++) {
+            String room = "${String.fromCharCode(65 + i)} - ${j}0${k + 1}";
+            int roomNo = 0;
+            if (k <= 9) {
+              roomNo = int.parse("${j}0${k + 1}");
+              print("${String.fromCharCode(65 + i)} - ${j}0${k + 1}");
+            } else {
+              roomNo = int.parse("${j}0${k + 1}");
+            }
+            await Rooms.insert(
+                session,
+                Rooms(
+                    socId: society.id!,
+                    room: room,
+                    roomNo: roomNo,
+                    owner: "",
+                    onRent: false,
+                    onSale: false,
+                    carpetArea: 0,
+                    roomStructure: "",
+                    balcony: false,
+                    isOccupied: false,
+                    totalMembers: 0,
+                    roomExist: false,
+                    ownerId: 0,
+                    membersId: [],
+                    rentalId: []));
+          }
+        }
+      }
+    } catch (e) {
+      print("SocietyHelper --> createSocietyRoom --> $e");
+    }
+  }
+}

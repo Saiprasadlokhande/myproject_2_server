@@ -23,15 +23,17 @@ import 'society_amenities.dart' as _i13;
 import 'state.dart' as _i14;
 import 'user_room.dart' as _i15;
 import 'vehicles.dart' as _i16;
-import 'package:myproject_2_server/src/generated/address.dart' as _i17;
-import 'package:myproject_2_server/src/generated/area.dart' as _i18;
-import 'package:myproject_2_server/src/generated/city.dart' as _i19;
-import 'package:myproject_2_server/src/generated/country.dart' as _i20;
-import 'package:myproject_2_server/src/generated/district.dart' as _i21;
-import 'package:myproject_2_server/src/generated/society.dart' as _i22;
-import 'package:myproject_2_server/src/generated/state.dart' as _i23;
-import 'package:myproject_2_server/src/generated/members.dart' as _i24;
-import 'package:serverpod/protocol.dart' as _i25;
+import 'protocol.dart' as _i17;
+import 'package:myproject_2_server/src/generated/address.dart' as _i18;
+import 'package:myproject_2_server/src/generated/area.dart' as _i19;
+import 'package:myproject_2_server/src/generated/city.dart' as _i20;
+import 'package:myproject_2_server/src/generated/country.dart' as _i21;
+import 'package:myproject_2_server/src/generated/district.dart' as _i22;
+import 'package:myproject_2_server/src/generated/rooms.dart' as _i23;
+import 'package:myproject_2_server/src/generated/society.dart' as _i24;
+import 'package:myproject_2_server/src/generated/state.dart' as _i25;
+import 'package:myproject_2_server/src/generated/members.dart' as _i26;
+import 'package:serverpod/protocol.dart' as _i27;
 export 'address.dart';
 export 'area.dart';
 export 'city.dart';
@@ -163,40 +165,49 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == List<int>) {
       return (data as List).map((e) => deserialize<int>(e)).toList() as dynamic;
     }
-    if (t == List<_i17.Address>) {
-      return (data as List).map((e) => deserialize<_i17.Address>(e)).toList()
+    if (t == _i1.getType<List<_i17.Rooms>?>()) {
+      return (data != null
+          ? (data as List).map((e) => deserialize<_i17.Rooms>(e)).toList()
+          : null) as dynamic;
+    }
+    if (t == List<_i18.Address>) {
+      return (data as List).map((e) => deserialize<_i18.Address>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i18.Area>) {
-      return (data as List).map((e) => deserialize<_i18.Area>(e)).toList()
+    if (t == List<_i19.Area>) {
+      return (data as List).map((e) => deserialize<_i19.Area>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i19.City>) {
-      return (data as List).map((e) => deserialize<_i19.City>(e)).toList()
+    if (t == List<_i20.City>) {
+      return (data as List).map((e) => deserialize<_i20.City>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i20.Country>) {
-      return (data as List).map((e) => deserialize<_i20.Country>(e)).toList()
+    if (t == List<_i21.Country>) {
+      return (data as List).map((e) => deserialize<_i21.Country>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i21.District>) {
-      return (data as List).map((e) => deserialize<_i21.District>(e)).toList()
+    if (t == List<_i22.District>) {
+      return (data as List).map((e) => deserialize<_i22.District>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i22.Society>) {
-      return (data as List).map((e) => deserialize<_i22.Society>(e)).toList()
+    if (t == List<_i23.Rooms>) {
+      return (data as List).map((e) => deserialize<_i23.Rooms>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i23.States>) {
-      return (data as List).map((e) => deserialize<_i23.States>(e)).toList()
+    if (t == List<_i24.Society>) {
+      return (data as List).map((e) => deserialize<_i24.Society>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i24.Members>) {
-      return (data as List).map((e) => deserialize<_i24.Members>(e)).toList()
+    if (t == List<_i25.States>) {
+      return (data as List).map((e) => deserialize<_i25.States>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i26.Members>) {
+      return (data as List).map((e) => deserialize<_i26.Members>(e)).toList()
           as dynamic;
     }
     try {
-      return _i25.Protocol().deserialize<T>(data, t);
+      return _i27.Protocol().deserialize<T>(data, t);
     } catch (_) {}
     return super.deserialize<T>(data, t);
   }
@@ -304,7 +315,7 @@ class Protocol extends _i1.SerializationManagerServer {
   @override
   _i1.Table? getTableForType(Type t) {
     {
-      var table = _i25.Protocol().getTableForType(t);
+      var table = _i27.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }

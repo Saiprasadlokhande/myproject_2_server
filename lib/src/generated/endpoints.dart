@@ -12,17 +12,19 @@ import '../endpoints/area.dart' as _i3;
 import '../endpoints/city.dart' as _i4;
 import '../endpoints/country.dart' as _i5;
 import '../endpoints/district.dart' as _i6;
-import '../endpoints/society_endpoint.dart' as _i7;
-import '../endpoints/state.dart' as _i8;
-import '../endpoints/user_endpoint.dart' as _i9;
-import 'package:myproject_2_server/src/generated/address.dart' as _i10;
-import 'package:myproject_2_server/src/generated/area.dart' as _i11;
-import 'package:myproject_2_server/src/generated/city.dart' as _i12;
-import 'package:myproject_2_server/src/generated/country.dart' as _i13;
-import 'package:myproject_2_server/src/generated/district.dart' as _i14;
-import 'package:myproject_2_server/src/generated/society.dart' as _i15;
-import 'package:myproject_2_server/src/generated/state.dart' as _i16;
-import 'package:myproject_2_server/src/generated/members.dart' as _i17;
+import '../endpoints/rooms.dart' as _i7;
+import '../endpoints/society_endpoint.dart' as _i8;
+import '../endpoints/state.dart' as _i9;
+import '../endpoints/user_endpoint.dart' as _i10;
+import 'package:myproject_2_server/src/generated/address.dart' as _i11;
+import 'package:myproject_2_server/src/generated/area.dart' as _i12;
+import 'package:myproject_2_server/src/generated/city.dart' as _i13;
+import 'package:myproject_2_server/src/generated/country.dart' as _i14;
+import 'package:myproject_2_server/src/generated/district.dart' as _i15;
+import 'package:myproject_2_server/src/generated/rooms.dart' as _i16;
+import 'package:myproject_2_server/src/generated/society.dart' as _i17;
+import 'package:myproject_2_server/src/generated/state.dart' as _i18;
+import 'package:myproject_2_server/src/generated/members.dart' as _i19;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -58,19 +60,25 @@ class Endpoints extends _i1.EndpointDispatch {
           'district',
           null,
         ),
-      'society': _i7.SocietyEndpoint()
+      'rooms': _i7.RoomsEndpoint()
+        ..initialize(
+          server,
+          'rooms',
+          null,
+        ),
+      'society': _i8.SocietyEndpoint()
         ..initialize(
           server,
           'society',
           null,
         ),
-      'state': _i8.StateEndpoint()
+      'state': _i9.StateEndpoint()
         ..initialize(
           server,
           'state',
           null,
         ),
-      'members': _i9.MembersEndpoint()
+      'members': _i10.MembersEndpoint()
         ..initialize(
           server,
           'members',
@@ -86,7 +94,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'address': _i1.ParameterDescription(
               name: 'address',
-              type: _i1.getType<_i10.Address>(),
+              type: _i1.getType<_i11.Address>(),
               nullable: false,
             )
           },
@@ -122,7 +130,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'address': _i1.ParameterDescription(
               name: 'address',
-              type: _i1.getType<_i10.Address>(),
+              type: _i1.getType<_i11.Address>(),
               nullable: false,
             )
           },
@@ -182,7 +190,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'area': _i1.ParameterDescription(
               name: 'area',
-              type: _i1.getType<_i11.Area>(),
+              type: _i1.getType<_i12.Area>(),
               nullable: false,
             )
           },
@@ -224,7 +232,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'area': _i1.ParameterDescription(
               name: 'area',
-              type: _i1.getType<_i11.Area>(),
+              type: _i1.getType<_i12.Area>(),
               nullable: false,
             )
           },
@@ -284,7 +292,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'city': _i1.ParameterDescription(
               name: 'city',
-              type: _i1.getType<_i12.City>(),
+              type: _i1.getType<_i13.City>(),
               nullable: false,
             )
           },
@@ -326,7 +334,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'city': _i1.ParameterDescription(
               name: 'city',
-              type: _i1.getType<_i12.City>(),
+              type: _i1.getType<_i13.City>(),
               nullable: false,
             )
           },
@@ -368,7 +376,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'country': _i1.ParameterDescription(
               name: 'country',
-              type: _i1.getType<_i13.Country>(),
+              type: _i1.getType<_i14.Country>(),
               nullable: false,
             )
           },
@@ -404,7 +412,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'country': _i1.ParameterDescription(
               name: 'country',
-              type: _i1.getType<_i13.Country>(),
+              type: _i1.getType<_i14.Country>(),
               nullable: false,
             )
           },
@@ -446,7 +454,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'district': _i1.ParameterDescription(
               name: 'district',
-              type: _i1.getType<_i14.District>(),
+              type: _i1.getType<_i15.District>(),
               nullable: false,
             )
           },
@@ -488,7 +496,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'district': _i1.ParameterDescription(
               name: 'district',
-              type: _i1.getType<_i14.District>(),
+              type: _i1.getType<_i15.District>(),
               nullable: false,
             )
           },
@@ -521,6 +529,84 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
+    connectors['rooms'] = _i1.EndpointConnector(
+      name: 'rooms',
+      endpoint: endpoints['rooms']!,
+      methodConnectors: {
+        'getRooms': _i1.MethodConnector(
+          name: 'getRooms',
+          params: {
+            'keyword': _i1.ParameterDescription(
+              name: 'keyword',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['rooms'] as _i7.RoomsEndpoint).getRooms(
+            session,
+            keyword: params['keyword'],
+          ),
+        ),
+        'addRooms': _i1.MethodConnector(
+          name: 'addRooms',
+          params: {
+            'rooms': _i1.ParameterDescription(
+              name: 'rooms',
+              type: _i1.getType<_i16.Rooms>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['rooms'] as _i7.RoomsEndpoint).addRooms(
+            session,
+            params['rooms'],
+          ),
+        ),
+        'updateRooms': _i1.MethodConnector(
+          name: 'updateRooms',
+          params: {
+            'room': _i1.ParameterDescription(
+              name: 'room',
+              type: _i1.getType<_i16.Rooms>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['rooms'] as _i7.RoomsEndpoint).updateRooms(
+            session,
+            params['room'],
+          ),
+        ),
+        'deleteRooms': _i1.MethodConnector(
+          name: 'deleteRooms',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['rooms'] as _i7.RoomsEndpoint).deleteRooms(
+            session,
+            params['id'],
+          ),
+        ),
+      },
+    );
     connectors['society'] = _i1.EndpointConnector(
       name: 'society',
       endpoint: endpoints['society']!,
@@ -530,7 +616,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'society': _i1.ParameterDescription(
               name: 'society',
-              type: _i1.getType<_i15.Society>(),
+              type: _i1.getType<_i17.Society>(),
               nullable: false,
             )
           },
@@ -538,7 +624,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['society'] as _i7.SocietyEndpoint).addSociety(
+              (endpoints['society'] as _i8.SocietyEndpoint).addSociety(
             session,
             params['society'],
           ),
@@ -556,7 +642,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['society'] as _i7.SocietyEndpoint).getSociety(
+              (endpoints['society'] as _i8.SocietyEndpoint).getSociety(
             session,
             keyword: params['keyword'],
           ),
@@ -566,7 +652,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'society': _i1.ParameterDescription(
               name: 'society',
-              type: _i1.getType<_i15.Society>(),
+              type: _i1.getType<_i17.Society>(),
               nullable: false,
             )
           },
@@ -574,7 +660,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['society'] as _i7.SocietyEndpoint).updateSociety(
+              (endpoints['society'] as _i8.SocietyEndpoint).updateSociety(
             session,
             params['society'],
           ),
@@ -592,7 +678,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['society'] as _i7.SocietyEndpoint).deleteSociety(
+              (endpoints['society'] as _i8.SocietyEndpoint).deleteSociety(
             session,
             params['id'],
           ),
@@ -608,7 +694,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'state': _i1.ParameterDescription(
               name: 'state',
-              type: _i1.getType<_i16.States>(),
+              type: _i1.getType<_i18.States>(),
               nullable: false,
             )
           },
@@ -616,7 +702,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['state'] as _i8.StateEndpoint).addState(
+              (endpoints['state'] as _i9.StateEndpoint).addState(
             session,
             params['state'],
           ),
@@ -639,7 +725,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['state'] as _i8.StateEndpoint).getState(
+              (endpoints['state'] as _i9.StateEndpoint).getState(
             session,
             params['countryId'],
             keyword: params['keyword'],
@@ -650,7 +736,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'state': _i1.ParameterDescription(
               name: 'state',
-              type: _i1.getType<_i16.States>(),
+              type: _i1.getType<_i18.States>(),
               nullable: false,
             )
           },
@@ -658,7 +744,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['state'] as _i8.StateEndpoint).updateState(
+              (endpoints['state'] as _i9.StateEndpoint).updateState(
             session,
             params['state'],
           ),
@@ -676,7 +762,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['state'] as _i8.StateEndpoint).deleteState(
+              (endpoints['state'] as _i9.StateEndpoint).deleteState(
             session,
             params['id'],
           ),
@@ -700,7 +786,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['members'] as _i9.MembersEndpoint).getMembers(
+              (endpoints['members'] as _i10.MembersEndpoint).getMembers(
             session,
             keyword: params['keyword'],
           ),
@@ -710,7 +796,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'users': _i1.ParameterDescription(
               name: 'users',
-              type: _i1.getType<_i17.Members>(),
+              type: _i1.getType<_i19.Members>(),
               nullable: false,
             )
           },
@@ -718,7 +804,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['members'] as _i9.MembersEndpoint).addMembers(
+              (endpoints['members'] as _i10.MembersEndpoint).addMembers(
             session,
             params['users'],
           ),
@@ -728,7 +814,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'user': _i1.ParameterDescription(
               name: 'user',
-              type: _i1.getType<_i17.Members>(),
+              type: _i1.getType<_i19.Members>(),
               nullable: false,
             )
           },
@@ -736,7 +822,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['members'] as _i9.MembersEndpoint).updateMembers(
+              (endpoints['members'] as _i10.MembersEndpoint).updateMembers(
             session,
             params['user'],
           ),
@@ -754,7 +840,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['members'] as _i9.MembersEndpoint).deleteMembers(
+              (endpoints['members'] as _i10.MembersEndpoint).deleteMembers(
             session,
             params['id'],
           ),
