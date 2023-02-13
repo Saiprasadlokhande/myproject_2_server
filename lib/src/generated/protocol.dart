@@ -33,7 +33,8 @@ import 'package:myproject_2_server/src/generated/rooms.dart' as _i23;
 import 'package:myproject_2_server/src/generated/society.dart' as _i24;
 import 'package:myproject_2_server/src/generated/state.dart' as _i25;
 import 'package:myproject_2_server/src/generated/members.dart' as _i26;
-import 'package:serverpod/protocol.dart' as _i27;
+import 'package:serverpod_auth_server/module.dart' as _i27;
+import 'package:serverpod/protocol.dart' as _i28;
 export 'address.dart';
 export 'area.dart';
 export 'city.dart';
@@ -209,11 +210,19 @@ class Protocol extends _i1.SerializationManagerServer {
     try {
       return _i27.Protocol().deserialize<T>(data, t);
     } catch (_) {}
+    try {
+      return _i28.Protocol().deserialize<T>(data, t);
+    } catch (_) {}
     return super.deserialize<T>(data, t);
   }
 
   @override
   String? getClassNameForObject(Object data) {
+    String? className;
+    className = _i27.Protocol().getClassNameForObject(data);
+    if (className != null) {
+      return 'serverpod_auth.$className';
+    }
     if (data is _i2.Address) {
       return 'Address';
     }
@@ -264,6 +273,10 @@ class Protocol extends _i1.SerializationManagerServer {
 
   @override
   dynamic deserializeByClassName(Map<String, dynamic> data) {
+    if (data['className'].startsWith('serverpod_auth.')) {
+      data['className'] = data['className'].substring(15);
+      return _i27.Protocol().deserializeByClassName(data);
+    }
     if (data['className'] == 'Address') {
       return deserialize<_i2.Address>(data['data']);
     }
@@ -316,6 +329,12 @@ class Protocol extends _i1.SerializationManagerServer {
   _i1.Table? getTableForType(Type t) {
     {
       var table = _i27.Protocol().getTableForType(t);
+      if (table != null) {
+        return table;
+      }
+    }
+    {
+      var table = _i28.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }

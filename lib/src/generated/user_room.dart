@@ -262,6 +262,9 @@ typedef UserRoomExpressionBuilder = _i1.Expression Function(UserRoomTable);
 class UserRoomTable extends _i1.Table {
   UserRoomTable() : super(tableName: 'user_room');
 
+  /// The database id, set if the object has been inserted into the
+  /// database or if it has been fetched from the database. Otherwise,
+  /// the id will be null.
   final id = _i1.ColumnInt('id');
 
   final socId = _i1.ColumnInt('socId');

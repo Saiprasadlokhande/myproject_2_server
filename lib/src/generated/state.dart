@@ -197,6 +197,9 @@ typedef StatesExpressionBuilder = _i1.Expression Function(StatesTable);
 class StatesTable extends _i1.Table {
   StatesTable() : super(tableName: 'states');
 
+  /// The database id, set if the object has been inserted into the
+  /// database or if it has been fetched from the database. Otherwise,
+  /// the id will be null.
   final id = _i1.ColumnInt('id');
 
   final countryId = _i1.ColumnInt('countryId');

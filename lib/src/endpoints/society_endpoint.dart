@@ -61,8 +61,8 @@ class SocietyEndpoint extends Endpoint {
         list[i].address = (await Address.findSingleRow(session,
             where: (data) => data.id.equals(list[i].socAddressId)))!;
 
-        list[i].rooms = (await Rooms.findSingleRow(session,
-            where: (data) => data.socId.equals(list[i].id)))!;
+        list[i].rooms = (await Rooms.find(session,
+            where: (data) => data.socId.equals(list[i].id)));
       }
     }
     return list;

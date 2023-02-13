@@ -371,6 +371,9 @@ typedef MaintainenceChargesExpressionBuilder = _i1.Expression Function(
 class MaintainenceChargesTable extends _i1.Table {
   MaintainenceChargesTable() : super(tableName: 'maintainence_charges');
 
+  /// The database id, set if the object has been inserted into the
+  /// database or if it has been fetched from the database. Otherwise,
+  /// the id will be null.
   final id = _i1.ColumnInt('id');
 
   final socId = _i1.ColumnInt('socId');

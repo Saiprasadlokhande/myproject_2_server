@@ -25,6 +25,7 @@ import 'package:myproject_2_server/src/generated/rooms.dart' as _i16;
 import 'package:myproject_2_server/src/generated/society.dart' as _i17;
 import 'package:myproject_2_server/src/generated/state.dart' as _i18;
 import 'package:myproject_2_server/src/generated/members.dart' as _i19;
+import 'package:serverpod_auth_server/module.dart' as _i20;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -847,5 +848,6 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
+    modules['serverpod_auth'] = _i20.Endpoints()..initializeEndpoints(server);
   }
 }

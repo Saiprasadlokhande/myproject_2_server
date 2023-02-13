@@ -295,6 +295,9 @@ typedef MaintenanceBookExpressionBuilder = _i1.Expression Function(
 class MaintenanceBookTable extends _i1.Table {
   MaintenanceBookTable() : super(tableName: 'maintenance_book');
 
+  /// The database id, set if the object has been inserted into the
+  /// database or if it has been fetched from the database. Otherwise,
+  /// the id will be null.
   final id = _i1.ColumnInt('id');
 
   final socId = _i1.ColumnInt('socId');

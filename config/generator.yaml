@@ -1,6 +1,6 @@
 type: server
 
 client_package_path: ../myproject_2_client
-# modules:
-#   serverpod_auth:
-#     nickname: auth
+modules:
+  serverpod_auth:
+    nickname: auth

@@ -155,7 +155,7 @@ ALTER TABLE ONLY "members"
 -- Class SocietyAmenities as table soc_amenities
 --
 
-CREATE TABLE "soc_amenities" (  
+CREATE TABLE "soc_amenities" (
   "id" serial,
   "socId" integer NOT NULL,
   "bikeParking" boolean NOT NULL,

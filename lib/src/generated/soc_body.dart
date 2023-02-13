@@ -272,6 +272,9 @@ typedef SocBodyExpressionBuilder = _i1.Expression Function(SocBodyTable);
 class SocBodyTable extends _i1.Table {
   SocBodyTable() : super(tableName: 'soc_body');
 
+  /// The database id, set if the object has been inserted into the
+  /// database or if it has been fetched from the database. Otherwise,
+  /// the id will be null.
   final id = _i1.ColumnInt('id');
 
   final socId = _i1.ColumnInt('socId');

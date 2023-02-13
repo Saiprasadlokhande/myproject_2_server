@@ -186,6 +186,9 @@ typedef CountryExpressionBuilder = _i1.Expression Function(CountryTable);
 class CountryTable extends _i1.Table {
   CountryTable() : super(tableName: 'country');
 
+  /// The database id, set if the object has been inserted into the
+  /// database or if it has been fetched from the database. Otherwise,
+  /// the id will be null.
   final id = _i1.ColumnInt('id');
 
   final country = _i1.ColumnString('country');
