@@ -29,12 +29,13 @@ import 'package:myproject_2_server/src/generated/area.dart' as _i19;
 import 'package:myproject_2_server/src/generated/city.dart' as _i20;
 import 'package:myproject_2_server/src/generated/country.dart' as _i21;
 import 'package:myproject_2_server/src/generated/district.dart' as _i22;
-import 'package:myproject_2_server/src/generated/rooms.dart' as _i23;
-import 'package:myproject_2_server/src/generated/society.dart' as _i24;
-import 'package:myproject_2_server/src/generated/state.dart' as _i25;
-import 'package:myproject_2_server/src/generated/members.dart' as _i26;
-import 'package:serverpod_auth_server/module.dart' as _i27;
-import 'package:serverpod/protocol.dart' as _i28;
+import 'package:myproject_2_server/src/generated/members.dart' as _i23;
+import 'package:myproject_2_server/src/generated/user_room.dart' as _i24;
+import 'package:myproject_2_server/src/generated/rooms.dart' as _i25;
+import 'package:myproject_2_server/src/generated/society.dart' as _i26;
+import 'package:myproject_2_server/src/generated/state.dart' as _i27;
+import 'package:serverpod_auth_server/module.dart' as _i28;
+import 'package:serverpod/protocol.dart' as _i29;
 export 'address.dart';
 export 'area.dart';
 export 'city.dart';
@@ -163,6 +164,11 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i1.getType<_i16.Vehicles?>()) {
       return (data != null ? _i16.Vehicles.fromJson(data, this) : null) as T;
     }
+    if (t == _i1.getType<List<_i17.Rooms>?>()) {
+      return (data != null
+          ? (data as List).map((e) => deserialize<_i17.Rooms>(e)).toList()
+          : null) as dynamic;
+    }
     if (t == List<int>) {
       return (data as List).map((e) => deserialize<int>(e)).toList() as dynamic;
     }
@@ -191,27 +197,39 @@ class Protocol extends _i1.SerializationManagerServer {
       return (data as List).map((e) => deserialize<_i22.District>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i23.Rooms>) {
-      return (data as List).map((e) => deserialize<_i23.Rooms>(e)).toList()
+    if (t == List<_i23.Members?>) {
+      return (data as List).map((e) => deserialize<_i23.Members?>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i24.Society>) {
-      return (data as List).map((e) => deserialize<_i24.Society>(e)).toList()
+    if (t == List<_i24.UserRoom?>) {
+      return (data as List).map((e) => deserialize<_i24.UserRoom?>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i25.States>) {
-      return (data as List).map((e) => deserialize<_i25.States>(e)).toList()
+    if (t == List<_i25.Rooms>) {
+      return (data as List).map((e) => deserialize<_i25.Rooms>(e)).toList()
           as dynamic;
     }
-    if (t == List<_i26.Members>) {
-      return (data as List).map((e) => deserialize<_i26.Members>(e)).toList()
+    if (t == List<_i26.Society>) {
+      return (data as List).map((e) => deserialize<_i26.Society>(e)).toList()
           as dynamic;
     }
-    try {
-      return _i27.Protocol().deserialize<T>(data, t);
-    } catch (_) {}
+    if (t == List<_i27.States>) {
+      return (data as List).map((e) => deserialize<_i27.States>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i23.Members>) {
+      return (data as List).map((e) => deserialize<_i23.Members>(e)).toList()
+          as dynamic;
+    }
+    if (t == List<_i24.UserRoom>) {
+      return (data as List).map((e) => deserialize<_i24.UserRoom>(e)).toList()
+          as dynamic;
+    }
     try {
       return _i28.Protocol().deserialize<T>(data, t);
+    } catch (_) {}
+    try {
+      return _i29.Protocol().deserialize<T>(data, t);
     } catch (_) {}
     return super.deserialize<T>(data, t);
   }
@@ -219,7 +237,7 @@ class Protocol extends _i1.SerializationManagerServer {
   @override
   String? getClassNameForObject(Object data) {
     String? className;
-    className = _i27.Protocol().getClassNameForObject(data);
+    className = _i28.Protocol().getClassNameForObject(data);
     if (className != null) {
       return 'serverpod_auth.$className';
     }
@@ -275,7 +293,7 @@ class Protocol extends _i1.SerializationManagerServer {
   dynamic deserializeByClassName(Map<String, dynamic> data) {
     if (data['className'].startsWith('serverpod_auth.')) {
       data['className'] = data['className'].substring(15);
-      return _i27.Protocol().deserializeByClassName(data);
+      return _i28.Protocol().deserializeByClassName(data);
     }
     if (data['className'] == 'Address') {
       return deserialize<_i2.Address>(data['data']);
@@ -328,13 +346,13 @@ class Protocol extends _i1.SerializationManagerServer {
   @override
   _i1.Table? getTableForType(Type t) {
     {
-      var table = _i27.Protocol().getTableForType(t);
+      var table = _i28.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }
     }
     {
-      var table = _i28.Protocol().getTableForType(t);
+      var table = _i29.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }

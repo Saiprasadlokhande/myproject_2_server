@@ -18,21 +18,22 @@ class SocietyHelper {
             await Rooms.insert(
                 session,
                 Rooms(
-                    socId: society.id!,
-                    room: room,
-                    roomNo: roomNo,
-                    owner: "",
-                    onRent: false,
-                    onSale: false,
-                    carpetArea: 0,
-                    roomStructure: "",
-                    balcony: false,
-                    isOccupied: false,
-                    totalMembers: 0,
-                    roomExist: false,
-                    ownerId: 0,
-                    membersId: [],
-                    rentalId: []));
+                  socId: society.id!,
+                  room: room,
+                  roomNo: roomNo,
+                  owner: "",
+                  onRent: false,
+                  onSale: false,
+                  carpetArea: 0,
+                  roomStructure: "",
+                  balcony: false,
+                  isOccupied: false,
+                  totalMembers: 0,
+                  roomExist: false,
+                  // ownerId: 0,
+                  // membersId: [],
+                  // rentalId: []
+                ));
           }
         }
       }

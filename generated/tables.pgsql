@@ -144,7 +144,9 @@ CREATE TABLE "members" (
   "blockCount" integer NOT NULL,
   "mobileModel" text NOT NULL,
   "status" boolean NOT NULL,
-  "isActive" boolean NOT NULL
+  "isActive" boolean NOT NULL,
+  "post" text,
+  "deviceId" text
 );
 
 ALTER TABLE ONLY "members"
@@ -238,10 +240,7 @@ CREATE TABLE "rooms" (
   "balcony" boolean NOT NULL,
   "isOccupied" boolean NOT NULL,
   "totalMembers" integer NOT NULL,
-  "roomExist" boolean NOT NULL,
-  "ownerId" integer NOT NULL,
-  "membersId" json NOT NULL,
-  "rentalId" json NOT NULL
+  "roomExist" boolean NOT NULL
 );
 
 ALTER TABLE ONLY "rooms"
@@ -277,10 +276,12 @@ CREATE TABLE "user_room" (
   "userId" integer NOT NULL,
   "roomId" integer NOT NULL,
   "fromDate" timestamp without time zone NOT NULL,
-  "toDate" timestamp without time zone NOT NULL,
-  "ownership" boolean NOT NULL,
+  "toDate" timestamp without time zone,
+  "isOwner" boolean NOT NULL,
   "isResident" boolean NOT NULL,
-  "isRental" boolean NOT NULL
+  "isRental" boolean NOT NULL,
+  "userRoomStatus" boolean NOT NULL,
+  "roomDetails" json
 );
 
 ALTER TABLE ONLY "user_room"

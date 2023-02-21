@@ -7,6 +7,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
+import 'protocol.dart' as _i2;
 
 class Members extends _i1.TableRow {
   Members({
@@ -22,6 +23,9 @@ class Members extends _i1.TableRow {
     required this.mobileModel,
     required this.status,
     required this.isActive,
+    this.rooms,
+    this.post,
+    this.deviceId,
   }) : super(id);
 
   factory Members.fromJson(
@@ -49,6 +53,12 @@ class Members extends _i1.TableRow {
           serializationManager.deserialize<bool>(jsonSerialization['status']),
       isActive:
           serializationManager.deserialize<bool>(jsonSerialization['isActive']),
+      rooms: serializationManager
+          .deserialize<List<_i2.Rooms>?>(jsonSerialization['rooms']),
+      post:
+          serializationManager.deserialize<String?>(jsonSerialization['post']),
+      deviceId: serializationManager
+          .deserialize<String?>(jsonSerialization['deviceId']),
     );
   }
 
@@ -76,6 +86,12 @@ class Members extends _i1.TableRow {
 
   bool isActive;
 
+  List<_i2.Rooms>? rooms;
+
+  String? post;
+
+  String? deviceId;
+
   @override
   String get tableName => 'members';
   @override
@@ -93,6 +109,9 @@ class Members extends _i1.TableRow {
       'mobileModel': mobileModel,
       'status': status,
       'isActive': isActive,
+      'rooms': rooms,
+      'post': post,
+      'deviceId': deviceId,
     };
   }
 
@@ -111,6 +130,8 @@ class Members extends _i1.TableRow {
       'mobileModel': mobileModel,
       'status': status,
       'isActive': isActive,
+      'post': post,
+      'deviceId': deviceId,
     };
   }
 
@@ -129,6 +150,9 @@ class Members extends _i1.TableRow {
       'mobileModel': mobileModel,
       'status': status,
       'isActive': isActive,
+      'rooms': rooms,
+      'post': post,
+      'deviceId': deviceId,
     };
   }
 
@@ -173,6 +197,12 @@ class Members extends _i1.TableRow {
         return;
       case 'isActive':
         isActive = value;
+        return;
+      case 'post':
+        post = value;
+        return;
+      case 'deviceId':
+        deviceId = value;
         return;
       default:
         throw UnimplementedError();
@@ -320,6 +350,10 @@ class MembersTable extends _i1.Table {
 
   final isActive = _i1.ColumnBool('isActive');
 
+  final post = _i1.ColumnString('post');
+
+  final deviceId = _i1.ColumnString('deviceId');
+
   @override
   List<_i1.Column> get columns => [
         id,
@@ -334,6 +368,8 @@ class MembersTable extends _i1.Table {
         mobileModel,
         status,
         isActive,
+        post,
+        deviceId,
       ];
 }
 

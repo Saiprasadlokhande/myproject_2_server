@@ -37,10 +37,7 @@ class SocietyEndpoint extends Endpoint {
                     balcony: false,
                     isOccupied: false,
                     totalMembers: 0,
-                    roomExist: false,
-                    ownerId: 0,
-                    membersId: [],
-                    rentalId: []));
+                    roomExist: false));
           }
         }
       }

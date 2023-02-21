@@ -25,6 +25,13 @@ district:
   - getDistrict:
   - updateDistrict:
   - deleteDistrict:
+roomMembers:
+  - updateRequestToJoinRoom:
+  - addMembersToShop:
+  - getUserRoomMembers:
+  - updateMembersDetails:
+  - deleteMembersFromRoom:
+  - findMembers:
 rooms:
   - getRooms:
   - addRooms:
@@ -45,3 +52,11 @@ members:
   - addMembers:
   - updateMembers:
   - deleteMembers:
+userRoom:
+  - getUserRoom:
+  - sendRequestToJoinRoom:
+  - updateRequestToJoinRoom:
+  - addUserRoom:
+  - updateUserRoom:
+  - deleteUserRooms:
+  - deleteUserRoomsss:

@@ -12,20 +12,23 @@ import '../endpoints/area.dart' as _i3;
 import '../endpoints/city.dart' as _i4;
 import '../endpoints/country.dart' as _i5;
 import '../endpoints/district.dart' as _i6;
-import '../endpoints/rooms.dart' as _i7;
-import '../endpoints/society_endpoint.dart' as _i8;
-import '../endpoints/state.dart' as _i9;
-import '../endpoints/user_endpoint.dart' as _i10;
-import 'package:myproject_2_server/src/generated/address.dart' as _i11;
-import 'package:myproject_2_server/src/generated/area.dart' as _i12;
-import 'package:myproject_2_server/src/generated/city.dart' as _i13;
-import 'package:myproject_2_server/src/generated/country.dart' as _i14;
-import 'package:myproject_2_server/src/generated/district.dart' as _i15;
-import 'package:myproject_2_server/src/generated/rooms.dart' as _i16;
-import 'package:myproject_2_server/src/generated/society.dart' as _i17;
-import 'package:myproject_2_server/src/generated/state.dart' as _i18;
-import 'package:myproject_2_server/src/generated/members.dart' as _i19;
-import 'package:serverpod_auth_server/module.dart' as _i20;
+import '../endpoints/room_members.dart' as _i7;
+import '../endpoints/rooms.dart' as _i8;
+import '../endpoints/society_endpoint.dart' as _i9;
+import '../endpoints/state.dart' as _i10;
+import '../endpoints/user_endpoint.dart' as _i11;
+import '../endpoints/user_room.dart' as _i12;
+import 'package:myproject_2_server/src/generated/address.dart' as _i13;
+import 'package:myproject_2_server/src/generated/area.dart' as _i14;
+import 'package:myproject_2_server/src/generated/city.dart' as _i15;
+import 'package:myproject_2_server/src/generated/country.dart' as _i16;
+import 'package:myproject_2_server/src/generated/district.dart' as _i17;
+import 'package:myproject_2_server/src/generated/members.dart' as _i18;
+import 'package:myproject_2_server/src/generated/user_room.dart' as _i19;
+import 'package:myproject_2_server/src/generated/rooms.dart' as _i20;
+import 'package:myproject_2_server/src/generated/society.dart' as _i21;
+import 'package:myproject_2_server/src/generated/state.dart' as _i22;
+import 'package:serverpod_auth_server/module.dart' as _i23;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -61,28 +64,40 @@ class Endpoints extends _i1.EndpointDispatch {
           'district',
           null,
         ),
-      'rooms': _i7.RoomsEndpoint()
+      'roomMembers': _i7.RoomMembersEndpoint()
+        ..initialize(
+          server,
+          'roomMembers',
+          null,
+        ),
+      'rooms': _i8.RoomsEndpoint()
         ..initialize(
           server,
           'rooms',
           null,
         ),
-      'society': _i8.SocietyEndpoint()
+      'society': _i9.SocietyEndpoint()
         ..initialize(
           server,
           'society',
           null,
         ),
-      'state': _i9.StateEndpoint()
+      'state': _i10.StateEndpoint()
         ..initialize(
           server,
           'state',
           null,
         ),
-      'members': _i10.MembersEndpoint()
+      'members': _i11.MembersEndpoint()
         ..initialize(
           server,
           'members',
+          null,
+        ),
+      'userRoom': _i12.UserRoomEndpoint()
+        ..initialize(
+          server,
+          'userRoom',
           null,
         ),
     };
@@ -95,7 +110,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'address': _i1.ParameterDescription(
               name: 'address',
-              type: _i1.getType<_i11.Address>(),
+              type: _i1.getType<_i13.Address>(),
               nullable: false,
             )
           },
@@ -131,7 +146,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'address': _i1.ParameterDescription(
               name: 'address',
-              type: _i1.getType<_i11.Address>(),
+              type: _i1.getType<_i13.Address>(),
               nullable: false,
             )
           },
@@ -191,7 +206,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'area': _i1.ParameterDescription(
               name: 'area',
-              type: _i1.getType<_i12.Area>(),
+              type: _i1.getType<_i14.Area>(),
               nullable: false,
             )
           },
@@ -233,7 +248,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'area': _i1.ParameterDescription(
               name: 'area',
-              type: _i1.getType<_i12.Area>(),
+              type: _i1.getType<_i14.Area>(),
               nullable: false,
             )
           },
@@ -293,7 +308,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'city': _i1.ParameterDescription(
               name: 'city',
-              type: _i1.getType<_i13.City>(),
+              type: _i1.getType<_i15.City>(),
               nullable: false,
             )
           },
@@ -335,7 +350,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'city': _i1.ParameterDescription(
               name: 'city',
-              type: _i1.getType<_i13.City>(),
+              type: _i1.getType<_i15.City>(),
               nullable: false,
             )
           },
@@ -377,7 +392,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'country': _i1.ParameterDescription(
               name: 'country',
-              type: _i1.getType<_i14.Country>(),
+              type: _i1.getType<_i16.Country>(),
               nullable: false,
             )
           },
@@ -413,7 +428,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'country': _i1.ParameterDescription(
               name: 'country',
-              type: _i1.getType<_i14.Country>(),
+              type: _i1.getType<_i16.Country>(),
               nullable: false,
             )
           },
@@ -455,7 +470,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'district': _i1.ParameterDescription(
               name: 'district',
-              type: _i1.getType<_i15.District>(),
+              type: _i1.getType<_i17.District>(),
               nullable: false,
             )
           },
@@ -497,7 +512,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'district': _i1.ParameterDescription(
               name: 'district',
-              type: _i1.getType<_i15.District>(),
+              type: _i1.getType<_i17.District>(),
               nullable: false,
             )
           },
@@ -530,6 +545,131 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
+    connectors['roomMembers'] = _i1.EndpointConnector(
+      name: 'roomMembers',
+      endpoint: endpoints['roomMembers']!,
+      methodConnectors: {
+        'updateRequestToJoinRoom': _i1.MethodConnector(
+          name: 'updateRequestToJoinRoom',
+          params: {
+            'userRoomId': _i1.ParameterDescription(
+              name: 'userRoomId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'status': _i1.ParameterDescription(
+              name: 'status',
+              type: _i1.getType<bool>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['roomMembers'] as _i7.RoomMembersEndpoint)
+                  .updateRequestToJoinRoom(
+            session,
+            params['userRoomId'],
+            params['status'],
+          ),
+        ),
+        'addMembersToShop': _i1.MethodConnector(
+          name: 'addMembersToShop',
+          params: {
+            'member': _i1.ParameterDescription(
+              name: 'member',
+              type: _i1.getType<_i18.Members>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['roomMembers'] as _i7.RoomMembersEndpoint)
+                  .addMembersToShop(
+            session,
+            params['member'],
+          ),
+        ),
+        'getUserRoomMembers': _i1.MethodConnector(
+          name: 'getUserRoomMembers',
+          params: {
+            'roomId': _i1.ParameterDescription(
+              name: 'roomId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['roomMembers'] as _i7.RoomMembersEndpoint)
+                  .getUserRoomMembers(
+            session,
+            roomId: params['roomId'],
+          ),
+        ),
+        'updateMembersDetails': _i1.MethodConnector(
+          name: 'updateMembersDetails',
+          params: {
+            'member': _i1.ParameterDescription(
+              name: 'member',
+              type: _i1.getType<_i18.Members>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['roomMembers'] as _i7.RoomMembersEndpoint)
+                  .updateMembersDetails(
+            session,
+            params['member'],
+          ),
+        ),
+        'deleteMembersFromRoom': _i1.MethodConnector(
+          name: 'deleteMembersFromRoom',
+          params: {
+            'userRoom': _i1.ParameterDescription(
+              name: 'userRoom',
+              type: _i1.getType<_i19.UserRoom>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['roomMembers'] as _i7.RoomMembersEndpoint)
+                  .deleteMembersFromRoom(
+            session,
+            params['userRoom'],
+          ),
+        ),
+        'findMembers': _i1.MethodConnector(
+          name: 'findMembers',
+          params: {
+            'searchString': _i1.ParameterDescription(
+              name: 'searchString',
+              type: _i1.getType<String?>(),
+              nullable: true,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['roomMembers'] as _i7.RoomMembersEndpoint).findMembers(
+            session,
+            searchString: params['searchString'],
+          ),
+        ),
+      },
+    );
     connectors['rooms'] = _i1.EndpointConnector(
       name: 'rooms',
       endpoint: endpoints['rooms']!,
@@ -547,7 +687,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['rooms'] as _i7.RoomsEndpoint).getRooms(
+              (endpoints['rooms'] as _i8.RoomsEndpoint).getRooms(
             session,
             keyword: params['keyword'],
           ),
@@ -557,7 +697,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'rooms': _i1.ParameterDescription(
               name: 'rooms',
-              type: _i1.getType<_i16.Rooms>(),
+              type: _i1.getType<_i20.Rooms>(),
               nullable: false,
             )
           },
@@ -565,7 +705,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['rooms'] as _i7.RoomsEndpoint).addRooms(
+              (endpoints['rooms'] as _i8.RoomsEndpoint).addRooms(
             session,
             params['rooms'],
           ),
@@ -575,7 +715,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'room': _i1.ParameterDescription(
               name: 'room',
-              type: _i1.getType<_i16.Rooms>(),
+              type: _i1.getType<_i20.Rooms>(),
               nullable: false,
             )
           },
@@ -583,7 +723,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['rooms'] as _i7.RoomsEndpoint).updateRooms(
+              (endpoints['rooms'] as _i8.RoomsEndpoint).updateRooms(
             session,
             params['room'],
           ),
@@ -601,7 +741,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['rooms'] as _i7.RoomsEndpoint).deleteRooms(
+              (endpoints['rooms'] as _i8.RoomsEndpoint).deleteRooms(
             session,
             params['id'],
           ),
@@ -617,7 +757,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'society': _i1.ParameterDescription(
               name: 'society',
-              type: _i1.getType<_i17.Society>(),
+              type: _i1.getType<_i21.Society>(),
               nullable: false,
             )
           },
@@ -625,7 +765,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['society'] as _i8.SocietyEndpoint).addSociety(
+              (endpoints['society'] as _i9.SocietyEndpoint).addSociety(
             session,
             params['society'],
           ),
@@ -643,7 +783,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['society'] as _i8.SocietyEndpoint).getSociety(
+              (endpoints['society'] as _i9.SocietyEndpoint).getSociety(
             session,
             keyword: params['keyword'],
           ),
@@ -653,7 +793,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'society': _i1.ParameterDescription(
               name: 'society',
-              type: _i1.getType<_i17.Society>(),
+              type: _i1.getType<_i21.Society>(),
               nullable: false,
             )
           },
@@ -661,7 +801,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['society'] as _i8.SocietyEndpoint).updateSociety(
+              (endpoints['society'] as _i9.SocietyEndpoint).updateSociety(
             session,
             params['society'],
           ),
@@ -679,7 +819,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['society'] as _i8.SocietyEndpoint).deleteSociety(
+              (endpoints['society'] as _i9.SocietyEndpoint).deleteSociety(
             session,
             params['id'],
           ),
@@ -695,7 +835,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'state': _i1.ParameterDescription(
               name: 'state',
-              type: _i1.getType<_i18.States>(),
+              type: _i1.getType<_i22.States>(),
               nullable: false,
             )
           },
@@ -703,7 +843,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['state'] as _i9.StateEndpoint).addState(
+              (endpoints['state'] as _i10.StateEndpoint).addState(
             session,
             params['state'],
           ),
@@ -726,7 +866,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['state'] as _i9.StateEndpoint).getState(
+              (endpoints['state'] as _i10.StateEndpoint).getState(
             session,
             params['countryId'],
             keyword: params['keyword'],
@@ -737,7 +877,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'state': _i1.ParameterDescription(
               name: 'state',
-              type: _i1.getType<_i18.States>(),
+              type: _i1.getType<_i22.States>(),
               nullable: false,
             )
           },
@@ -745,7 +885,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['state'] as _i9.StateEndpoint).updateState(
+              (endpoints['state'] as _i10.StateEndpoint).updateState(
             session,
             params['state'],
           ),
@@ -763,7 +903,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['state'] as _i9.StateEndpoint).deleteState(
+              (endpoints['state'] as _i10.StateEndpoint).deleteState(
             session,
             params['id'],
           ),
@@ -787,7 +927,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['members'] as _i10.MembersEndpoint).getMembers(
+              (endpoints['members'] as _i11.MembersEndpoint).getMembers(
             session,
             keyword: params['keyword'],
           ),
@@ -797,7 +937,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'users': _i1.ParameterDescription(
               name: 'users',
-              type: _i1.getType<_i19.Members>(),
+              type: _i1.getType<_i18.Members>(),
               nullable: false,
             )
           },
@@ -805,7 +945,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['members'] as _i10.MembersEndpoint).addMembers(
+              (endpoints['members'] as _i11.MembersEndpoint).addMembers(
             session,
             params['users'],
           ),
@@ -815,7 +955,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'user': _i1.ParameterDescription(
               name: 'user',
-              type: _i1.getType<_i19.Members>(),
+              type: _i1.getType<_i18.Members>(),
               nullable: false,
             )
           },
@@ -823,7 +963,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['members'] as _i10.MembersEndpoint).updateMembers(
+              (endpoints['members'] as _i11.MembersEndpoint).updateMembers(
             session,
             params['user'],
           ),
@@ -841,13 +981,146 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['members'] as _i10.MembersEndpoint).deleteMembers(
+              (endpoints['members'] as _i11.MembersEndpoint).deleteMembers(
             session,
             params['id'],
           ),
         ),
       },
     );
-    modules['serverpod_auth'] = _i20.Endpoints()..initializeEndpoints(server);
+    connectors['userRoom'] = _i1.EndpointConnector(
+      name: 'userRoom',
+      endpoint: endpoints['userRoom']!,
+      methodConnectors: {
+        'getUserRoom': _i1.MethodConnector(
+          name: 'getUserRoom',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userRoom'] as _i12.UserRoomEndpoint)
+                  .getUserRoom(session),
+        ),
+        'sendRequestToJoinRoom': _i1.MethodConnector(
+          name: 'sendRequestToJoinRoom',
+          params: {
+            'roomId': _i1.ParameterDescription(
+              name: 'roomId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userRoom'] as _i12.UserRoomEndpoint)
+                  .sendRequestToJoinRoom(
+            session,
+            roomId: params['roomId'],
+          ),
+        ),
+        'updateRequestToJoinRoom': _i1.MethodConnector(
+          name: 'updateRequestToJoinRoom',
+          params: {
+            'userRoomId': _i1.ParameterDescription(
+              name: 'userRoomId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'status': _i1.ParameterDescription(
+              name: 'status',
+              type: _i1.getType<bool>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userRoom'] as _i12.UserRoomEndpoint)
+                  .updateRequestToJoinRoom(
+            session,
+            params['userRoomId'],
+            params['status'],
+          ),
+        ),
+        'addUserRoom': _i1.MethodConnector(
+          name: 'addUserRoom',
+          params: {
+            'rooms': _i1.ParameterDescription(
+              name: 'rooms',
+              type: _i1.getType<_i19.UserRoom>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userRoom'] as _i12.UserRoomEndpoint).addUserRoom(
+            session,
+            params['rooms'],
+          ),
+        ),
+        'updateUserRoom': _i1.MethodConnector(
+          name: 'updateUserRoom',
+          params: {
+            'room': _i1.ParameterDescription(
+              name: 'room',
+              type: _i1.getType<_i19.UserRoom>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userRoom'] as _i12.UserRoomEndpoint).updateUserRoom(
+            session,
+            params['room'],
+          ),
+        ),
+        'deleteUserRooms': _i1.MethodConnector(
+          name: 'deleteUserRooms',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userRoom'] as _i12.UserRoomEndpoint).deleteUserRooms(
+            session,
+            params['id'],
+          ),
+        ),
+        'deleteUserRoomsss': _i1.MethodConnector(
+          name: 'deleteUserRoomsss',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userRoom'] as _i12.UserRoomEndpoint)
+                  .deleteUserRoomsss(
+            session,
+            params['id'],
+          ),
+        ),
+      },
+    );
+    modules['serverpod_auth'] = _i23.Endpoints()..initializeEndpoints(server);
   }
 }

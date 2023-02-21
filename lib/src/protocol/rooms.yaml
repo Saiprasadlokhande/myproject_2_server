@@ -13,7 +13,3 @@ fields:
  isOccupied: bool
  totalMembers: int
  roomExist: bool
- ownerId: int
- membersId: List<int>
- rentalId: List<int>
-

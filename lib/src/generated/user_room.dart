@@ -7,6 +7,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
+import 'protocol.dart' as _i2;
 
 class UserRoom extends _i1.TableRow {
   UserRoom({
@@ -15,10 +16,12 @@ class UserRoom extends _i1.TableRow {
     required this.userId,
     required this.roomId,
     required this.fromDate,
-    required this.toDate,
-    required this.ownership,
+    this.toDate,
+    required this.isOwner,
     required this.isResident,
     required this.isRental,
+    required this.userRoomStatus,
+    this.roomDetails,
   }) : super(id);
 
   factory UserRoom.fromJson(
@@ -35,13 +38,17 @@ class UserRoom extends _i1.TableRow {
       fromDate: serializationManager
           .deserialize<DateTime>(jsonSerialization['fromDate']),
       toDate: serializationManager
-          .deserialize<DateTime>(jsonSerialization['toDate']),
-      ownership: serializationManager
-          .deserialize<bool>(jsonSerialization['ownership']),
+          .deserialize<DateTime?>(jsonSerialization['toDate']),
+      isOwner:
+          serializationManager.deserialize<bool>(jsonSerialization['isOwner']),
       isResident: serializationManager
           .deserialize<bool>(jsonSerialization['isResident']),
       isRental:
           serializationManager.deserialize<bool>(jsonSerialization['isRental']),
+      userRoomStatus: serializationManager
+          .deserialize<bool>(jsonSerialization['userRoomStatus']),
+      roomDetails: serializationManager
+          .deserialize<_i2.Rooms?>(jsonSerialization['roomDetails']),
     );
   }
 
@@ -55,13 +62,17 @@ class UserRoom extends _i1.TableRow {
 
   DateTime fromDate;
 
-  DateTime toDate;
+  DateTime? toDate;
 
-  bool ownership;
+  bool isOwner;
 
   bool isResident;
 
   bool isRental;
+
+  bool userRoomStatus;
+
+  _i2.Rooms? roomDetails;
 
   @override
   String get tableName => 'user_room';
@@ -74,9 +85,11 @@ class UserRoom extends _i1.TableRow {
       'roomId': roomId,
       'fromDate': fromDate,
       'toDate': toDate,
-      'ownership': ownership,
+      'isOwner': isOwner,
       'isResident': isResident,
       'isRental': isRental,
+      'userRoomStatus': userRoomStatus,
+      'roomDetails': roomDetails,
     };
   }
 
@@ -89,9 +102,11 @@ class UserRoom extends _i1.TableRow {
       'roomId': roomId,
       'fromDate': fromDate,
       'toDate': toDate,
-      'ownership': ownership,
+      'isOwner': isOwner,
       'isResident': isResident,
       'isRental': isRental,
+      'userRoomStatus': userRoomStatus,
+      'roomDetails': roomDetails,
     };
   }
 
@@ -104,9 +119,11 @@ class UserRoom extends _i1.TableRow {
       'roomId': roomId,
       'fromDate': fromDate,
       'toDate': toDate,
-      'ownership': ownership,
+      'isOwner': isOwner,
       'isResident': isResident,
       'isRental': isRental,
+      'userRoomStatus': userRoomStatus,
+      'roomDetails': roomDetails,
     };
   }
 
@@ -134,14 +151,20 @@ class UserRoom extends _i1.TableRow {
       case 'toDate':
         toDate = value;
         return;
-      case 'ownership':
-        ownership = value;
+      case 'isOwner':
+        isOwner = value;
         return;
       case 'isResident':
         isResident = value;
         return;
       case 'isRental':
         isRental = value;
+        return;
+      case 'userRoomStatus':
+        userRoomStatus = value;
+        return;
+      case 'roomDetails':
+        roomDetails = value;
         return;
       default:
         throw UnimplementedError();
@@ -277,11 +300,15 @@ class UserRoomTable extends _i1.Table {
 
   final toDate = _i1.ColumnDateTime('toDate');
 
-  final ownership = _i1.ColumnBool('ownership');
+  final isOwner = _i1.ColumnBool('isOwner');
 
   final isResident = _i1.ColumnBool('isResident');
 
   final isRental = _i1.ColumnBool('isRental');
+
+  final userRoomStatus = _i1.ColumnBool('userRoomStatus');
+
+  final roomDetails = _i1.ColumnSerializable('roomDetails');
 
   @override
   List<_i1.Column> get columns => [
@@ -291,9 +318,11 @@ class UserRoomTable extends _i1.Table {
         roomId,
         fromDate,
         toDate,
-        ownership,
+        isOwner,
         isResident,
         isRental,
+        userRoomStatus,
+        roomDetails,
       ];
 }
 

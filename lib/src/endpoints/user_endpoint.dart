@@ -6,7 +6,7 @@ class MembersEndpoint extends Endpoint {
     return await Members.find(session,
         where: (t) =>
             keyword != null ? t.name.ilike('%$keyword%') : Constant(true));
-  }
+  } 
 
   Future<bool> addMembers(Session session, Members users) async {
     await Members.insert(session, users);

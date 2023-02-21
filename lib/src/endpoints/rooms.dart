@@ -10,7 +10,7 @@ class RoomsEndpoint extends Endpoint {
 
   Future<bool> addRooms(Session session, Rooms rooms) async {
     await Rooms.insert(session, rooms);
-    return true;
+    return true;  
   }
 
   Future<bool> updateRooms(Session session, Rooms room) async {

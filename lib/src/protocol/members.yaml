@@ -12,4 +12,7 @@ fields:
   mobileModel: String
   status: bool
   isActive: bool
+  rooms: List<Rooms>?, api
+  post: String?
+  deviceId: String?
 

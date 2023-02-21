@@ -23,9 +23,6 @@ class Rooms extends _i1.TableRow {
     required this.isOccupied,
     required this.totalMembers,
     required this.roomExist,
-    required this.ownerId,
-    required this.membersId,
-    required this.rentalId,
   }) : super(id);
 
   factory Rooms.fromJson(
@@ -56,12 +53,6 @@ class Rooms extends _i1.TableRow {
           .deserialize<int>(jsonSerialization['totalMembers']),
       roomExist: serializationManager
           .deserialize<bool>(jsonSerialization['roomExist']),
-      ownerId:
-          serializationManager.deserialize<int>(jsonSerialization['ownerId']),
-      membersId: serializationManager
-          .deserialize<List<int>>(jsonSerialization['membersId']),
-      rentalId: serializationManager
-          .deserialize<List<int>>(jsonSerialization['rentalId']),
     );
   }
 
@@ -91,12 +82,6 @@ class Rooms extends _i1.TableRow {
 
   bool roomExist;
 
-  int ownerId;
-
-  List<int> membersId;
-
-  List<int> rentalId;
-
   @override
   String get tableName => 'rooms';
   @override
@@ -115,9 +100,6 @@ class Rooms extends _i1.TableRow {
       'isOccupied': isOccupied,
       'totalMembers': totalMembers,
       'roomExist': roomExist,
-      'ownerId': ownerId,
-      'membersId': membersId,
-      'rentalId': rentalId,
     };
   }
 
@@ -137,9 +119,6 @@ class Rooms extends _i1.TableRow {
       'isOccupied': isOccupied,
       'totalMembers': totalMembers,
       'roomExist': roomExist,
-      'ownerId': ownerId,
-      'membersId': membersId,
-      'rentalId': rentalId,
     };
   }
 
@@ -159,9 +138,6 @@ class Rooms extends _i1.TableRow {
       'isOccupied': isOccupied,
       'totalMembers': totalMembers,
       'roomExist': roomExist,
-      'ownerId': ownerId,
-      'membersId': membersId,
-      'rentalId': rentalId,
     };
   }
 
@@ -209,15 +185,6 @@ class Rooms extends _i1.TableRow {
         return;
       case 'roomExist':
         roomExist = value;
-        return;
-      case 'ownerId':
-        ownerId = value;
-        return;
-      case 'membersId':
-        membersId = value;
-        return;
-      case 'rentalId':
-        rentalId = value;
         return;
       default:
         throw UnimplementedError();
@@ -367,12 +334,6 @@ class RoomsTable extends _i1.Table {
 
   final roomExist = _i1.ColumnBool('roomExist');
 
-  final ownerId = _i1.ColumnInt('ownerId');
-
-  final membersId = _i1.ColumnSerializable('membersId');
-
-  final rentalId = _i1.ColumnSerializable('rentalId');
-
   @override
   List<_i1.Column> get columns => [
         id,
@@ -388,9 +349,6 @@ class RoomsTable extends _i1.Table {
         isOccupied,
         totalMembers,
         roomExist,
-        ownerId,
-        membersId,
-        rentalId,
       ];
 }
 
