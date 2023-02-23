@@ -8,9 +8,13 @@ class RoomsEndpoint extends Endpoint {
             keyword != null ? t.room.ilike('%$keyword%') : Constant(true));
   }
 
+  Future<List<Rooms>> getAllRooms(Session session, {int? socId}) async {
+    return await Rooms.find(session, where: (t) => t.socId.equals(socId));
+  }
+
   Future<bool> addRooms(Session session, Rooms rooms) async {
     await Rooms.insert(session, rooms);
-    return true;  
+    return true;
   }
 
   Future<bool> updateRooms(Session session, Rooms room) async {

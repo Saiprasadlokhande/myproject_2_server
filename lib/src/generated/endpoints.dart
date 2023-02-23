@@ -692,6 +692,24 @@ class Endpoints extends _i1.EndpointDispatch {
             keyword: params['keyword'],
           ),
         ),
+        'getAllRooms': _i1.MethodConnector(
+          name: 'getAllRooms',
+          params: {
+            'socId': _i1.ParameterDescription(
+              name: 'socId',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['rooms'] as _i8.RoomsEndpoint).getAllRooms(
+            session,
+            socId: params['socId'],
+          ),
+        ),
         'addRooms': _i1.MethodConnector(
           name: 'addRooms',
           params: {

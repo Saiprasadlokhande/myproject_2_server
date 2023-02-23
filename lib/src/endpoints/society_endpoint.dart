@@ -26,18 +26,19 @@ class SocietyEndpoint extends Endpoint {
             await Rooms.insert(
                 session,
                 Rooms(
-                    socId: data.id!,
-                    room: room,
-                    roomNo: roomNo,
-                    owner: "",
-                    onRent: false,
-                    onSale: false,
-                    carpetArea: 0,
-                    roomStructure: "",
-                    balcony: false,
-                    isOccupied: false,
-                    totalMembers: 0,
-                    roomExist: false));
+                  socId: data.id!,
+                  room: room,
+                  roomNo: roomNo,
+                  owner: "",
+                  onRent: false,
+                  onSale: false,
+                  carpetArea: 0,
+                  roomStructure: "",
+                  balcony: false,
+                  isOccupied: false,
+                  totalMembers: 0,
+                  roomExist: false,
+                ));
           }
         }
       }
