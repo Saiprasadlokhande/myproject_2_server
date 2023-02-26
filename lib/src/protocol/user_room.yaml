@@ -11,3 +11,5 @@ fields:
   isRental: bool
   userRoomStatus: bool
   roomDetails: Rooms?
+  societyDetails: Society?
+  address: Address? ,api

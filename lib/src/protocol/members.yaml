@@ -3,11 +3,12 @@ table: members
 fields: 
   name: String
   age: int
+  userId: int
   mobile: String
   email: String
   aadharNo: String
-  panNo: String
-  dob: DateTime
+  isAadharVerified: bool?
+  dob: String
   blockCount: int
   mobileModel: String
   status: bool

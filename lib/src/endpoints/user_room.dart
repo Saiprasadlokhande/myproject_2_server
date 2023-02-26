@@ -12,6 +12,10 @@ class UserRoomEndpoint extends Endpoint {
             (t.userId.equals(userId) & t.userRoomStatus.equals(true)));
     for (int i = 0; i < userRoomList.length; i++) {
       Rooms? rooms = await Rooms.findById(session, userRoomList[i].roomId);
+      Society? society = await Society.findById(session, rooms!.socId);
+      Address? address = await Address.findById(session, society!.socAddressId);
+      userRoomList[i].societyDetails = society;
+      userRoomList[i].societyDetails!.address = address;
       userRoomList[i].roomDetails = rooms;
     }
     return userRoomList;
@@ -21,19 +25,25 @@ class UserRoomEndpoint extends Endpoint {
       {required int roomId}) async {
     try {
       Rooms? room = await Rooms.findById(session, roomId);
-      int? userId = await session.auth.authenticatedUserId;
-      UserRoom userRoom = UserRoom(
-          socId: room!.socId,
-          userId: userId!,
-          roomId: room.id!,
-          fromDate: DateTime.now(),
-          isOwner: false,
-          isResident: false,
-          isRental: false,
-          userRoomStatus: false);
-      await UserRoom.insert(session, userRoom);
-      return true;
+      if (room != null) {
+        int? userId = await session.auth.authenticatedUserId;
+        print(room.toJson());
+        UserRoom userRoom = UserRoom(
+            socId: room.socId,
+            userId: userId!,
+            roomId: room.id!,
+            fromDate: DateTime.now(),
+            isOwner: false,
+            isResident: false,
+            isRental: false,
+            userRoomStatus: true);
+        await UserRoom.insert(session, userRoom);
+        return true;
+      } else {
+        return false;
+      }
     } catch (e) {
+      print(e.toString());
       return false;
     }
   }

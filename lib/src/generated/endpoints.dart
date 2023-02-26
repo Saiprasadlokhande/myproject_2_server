@@ -932,6 +932,43 @@ class Endpoints extends _i1.EndpointDispatch {
       name: 'members',
       endpoint: endpoints['members']!,
       methodConnectors: {
+        'addUserToMember': _i1.MethodConnector(
+          name: 'addUserToMember',
+          params: {
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['members'] as _i11.MembersEndpoint).addUserToMember(
+            session,
+            userId: params['userId'],
+          ),
+        ),
+        'getMemberDetailsByUserId': _i1.MethodConnector(
+          name: 'getMemberDetailsByUserId',
+          params: {
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['members'] as _i11.MembersEndpoint)
+                  .getMemberDetailsByUserId(
+            session,
+            userId: params['userId'],
+          ),
+        ),
         'getMembers': _i1.MethodConnector(
           name: 'getMembers',
           params: {
@@ -948,6 +985,24 @@ class Endpoints extends _i1.EndpointDispatch {
               (endpoints['members'] as _i11.MembersEndpoint).getMembers(
             session,
             keyword: params['keyword'],
+          ),
+        ),
+        'getMembersById': _i1.MethodConnector(
+          name: 'getMembersById',
+          params: {
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<int?>(),
+              nullable: true,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['members'] as _i11.MembersEndpoint).getMembersById(
+            session,
+            userId: params['userId'],
           ),
         ),
         'addMembers': _i1.MethodConnector(

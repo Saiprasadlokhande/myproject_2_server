@@ -22,6 +22,8 @@ class UserRoom extends _i1.TableRow {
     required this.isRental,
     required this.userRoomStatus,
     this.roomDetails,
+    this.societyDetails,
+    this.address,
   }) : super(id);
 
   factory UserRoom.fromJson(
@@ -49,6 +51,10 @@ class UserRoom extends _i1.TableRow {
           .deserialize<bool>(jsonSerialization['userRoomStatus']),
       roomDetails: serializationManager
           .deserialize<_i2.Rooms?>(jsonSerialization['roomDetails']),
+      societyDetails: serializationManager
+          .deserialize<_i2.Society?>(jsonSerialization['societyDetails']),
+      address: serializationManager
+          .deserialize<_i2.Address?>(jsonSerialization['address']),
     );
   }
 
@@ -74,6 +80,10 @@ class UserRoom extends _i1.TableRow {
 
   _i2.Rooms? roomDetails;
 
+  _i2.Society? societyDetails;
+
+  _i2.Address? address;
+
   @override
   String get tableName => 'user_room';
   @override
@@ -90,6 +100,8 @@ class UserRoom extends _i1.TableRow {
       'isRental': isRental,
       'userRoomStatus': userRoomStatus,
       'roomDetails': roomDetails,
+      'societyDetails': societyDetails,
+      'address': address,
     };
   }
 
@@ -107,6 +119,7 @@ class UserRoom extends _i1.TableRow {
       'isRental': isRental,
       'userRoomStatus': userRoomStatus,
       'roomDetails': roomDetails,
+      'societyDetails': societyDetails,
     };
   }
 
@@ -124,6 +137,8 @@ class UserRoom extends _i1.TableRow {
       'isRental': isRental,
       'userRoomStatus': userRoomStatus,
       'roomDetails': roomDetails,
+      'societyDetails': societyDetails,
+      'address': address,
     };
   }
 
@@ -165,6 +180,9 @@ class UserRoom extends _i1.TableRow {
         return;
       case 'roomDetails':
         roomDetails = value;
+        return;
+      case 'societyDetails':
+        societyDetails = value;
         return;
       default:
         throw UnimplementedError();
@@ -310,6 +328,8 @@ class UserRoomTable extends _i1.Table {
 
   final roomDetails = _i1.ColumnSerializable('roomDetails');
 
+  final societyDetails = _i1.ColumnSerializable('societyDetails');
+
   @override
   List<_i1.Column> get columns => [
         id,
@@ -323,6 +343,7 @@ class UserRoomTable extends _i1.Table {
         isRental,
         userRoomStatus,
         roomDetails,
+        societyDetails,
       ];
 }
 

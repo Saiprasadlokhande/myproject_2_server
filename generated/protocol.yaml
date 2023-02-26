@@ -49,7 +49,10 @@ state:
   - updateState:
   - deleteState:
 members:
+  - addUserToMember:
+  - getMemberDetailsByUserId:
   - getMembers:
+  - getMembersById:
   - addMembers:
   - updateMembers:
   - deleteMembers:

@@ -136,11 +136,12 @@ CREATE TABLE "members" (
   "id" serial,
   "name" text NOT NULL,
   "age" integer NOT NULL,
+  "userId" integer NOT NULL,
   "mobile" text NOT NULL,
   "email" text NOT NULL,
   "aadharNo" text NOT NULL,
-  "panNo" text NOT NULL,
-  "dob" timestamp without time zone NOT NULL,
+  "isAadharVerified" boolean,
+  "dob" text NOT NULL,
   "blockCount" integer NOT NULL,
   "mobileModel" text NOT NULL,
   "status" boolean NOT NULL,
@@ -281,7 +282,8 @@ CREATE TABLE "user_room" (
   "isResident" boolean NOT NULL,
   "isRental" boolean NOT NULL,
   "userRoomStatus" boolean NOT NULL,
-  "roomDetails" json
+  "roomDetails" json,
+  "societyDetails" json
 );
 
 ALTER TABLE ONLY "user_room"
